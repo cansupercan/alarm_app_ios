@@ -10,6 +10,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="addViewController" customModule="timeee" customModuleProvider="target">
             <connections>
+                <outlet property="dpktime" destination="R9L-96-QI6" id="Hxd-M3-HSe"/>
                 <outlet property="tbvaddsee" destination="Gi8-yS-yie" id="6ZR-Sa-Bce"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>

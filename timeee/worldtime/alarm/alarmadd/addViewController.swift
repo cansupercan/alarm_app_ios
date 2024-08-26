@@ -11,6 +11,7 @@ import RealmSwift
 class addViewController: UIViewController {
     @IBOutlet weak var tbvaddsee: UITableView!
     
+    @IBOutlet weak var dpktime: UIDatePicker!
     weak var delegate: addViewControllerDelegate?
     
     
@@ -38,13 +39,34 @@ class addViewController: UIViewController {
        }
     @objc private func cancelButtonTapped () {
             // 設定動作
+        let data1 = alarmDatatime(issave: false, hor: 0, min: 0, uptime: true)
+        delegate?.passData(data1)
         dismiss(animated: true, completion: nil)
     }
 
-    @objc private func saveButtonTapped() {
+    @objc private func saveButtonTapped() { //儲存
         //設定動作
-      
-        dismiss(animated: true, completion: nil)
+        let ktime=dpktime.date
+        let dateFormatter = DateFormatter()
+        
+        dateFormatter.dateFormat = "hh"
+        let hors = dateFormatter.string(from: ktime)
+        let hori = Int(hors)
+        
+        dateFormatter.dateFormat = "mm"
+        let mins = dateFormatter.string(from: ktime)
+        let mini = Int(mins)
+        
+        dateFormatter.dateFormat = "a"
+        let uptimes = dateFormatter.string(from: ktime)
+        var uptimeb = false
+        dateFormatter.locale = Locale(identifier: "en_US_POSIX")
+        if uptimes == "AM"{
+            uptimeb=true
+        }
+        let data1 = alarmDatatime(issave: true, hor: hori, min: mini, uptime: uptimeb)
+        delegate?.passData(data1)
+        //dismiss(animated: true, completion: nil)
     }
     func addtableSet (){tbvaddsee.register(UINib(nibName: "TableViewCell", bundle: nil),forCellReuseIdentifier: TableViewCell.identifier)
         tbvaddsee.delegate = self
@@ -84,11 +106,7 @@ extension addViewController: UITableViewDelegate, UITableViewDataSource  {
         }
     }
 
-struct alarmDatatime {
-    var hor: Int
-    var min: Int
-    var uptime:Bool
-}
+
 protocol addViewControllerDelegate:AnyObject {
     func passData(_ data: alarmDatatime)
 }
