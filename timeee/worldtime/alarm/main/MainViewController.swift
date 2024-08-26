@@ -26,16 +26,6 @@ class MainViewController: UIViewController {
         super.viewDidLoad()
         setUI()
         print(Realm.Configuration.defaultConfiguration.fileURL!)
-        /*
-        let realm = try! Realm()
-        let dataala = alarmdata()
-        dataala.tid = realm.objects(alarmdata.self).count+1
-        dataala.time=Date()
-        dataala.message=""
-        dataala.uptime=true
-        try! realm.write {
-            realm.add(dataala)
-        }*/
     }
     
     func setUI(){
@@ -66,9 +56,6 @@ class MainViewController: UIViewController {
         let addVC = addViewController()
         //addVC.delegate = self
         let navigationController = UINavigationController(rootViewController: addVC)
-        let vc = addViewController?
-        vc.delegate = self
-        delegate?.passData(sedit:isedit,row:0)
         self.present(navigationController, animated: true)
     }
     // MARK: - Function
