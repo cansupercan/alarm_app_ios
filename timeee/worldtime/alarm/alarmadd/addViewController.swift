@@ -67,9 +67,6 @@ class addViewController: UIViewController {
     */
 
 }
-protocol addViewControllerDelegate {
-    func passData(uptimef:Bool,horf:Int,minf:Int)
-}
 
 extension addViewController: UITableViewDelegate, UITableViewDataSource  {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -95,5 +92,8 @@ extension addViewController: UITableViewDelegate, UITableViewDataSource  {
             }
         }
     }
-    
+
+protocol addViewControllerDelegate {
+    func passData(uptimef:Bool,horf:Int,minf:Int)
+}
 
