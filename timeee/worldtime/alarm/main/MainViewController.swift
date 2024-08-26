@@ -25,7 +25,11 @@ class MainViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setUI()
-        print(Realm.Configuration.defaultConfiguration.fileURL!)
+        //print(Realm.Configuration.defaultConfiguration.fileURL!)
+        func passData(_ data: alarmDatatime) {
+               // print("接收到的鬧鐘: \(data.hor) 小时, \(data.min) 分钟, uptime: \(data.uptime)")
+                // 在这里处理接收到的数据
+            }
     }
     
     func setUI(){
@@ -128,7 +132,7 @@ extension MainViewController: UITableViewDelegate, UITableViewDataSource  {
 }
 
 extension MainViewController: addViewControllerDelegate {
-    func passData(uptimef:Bool,horf:Int,minf:Int) {
+    func passData(_ data: alarmDatatime) {
        
     }
 }

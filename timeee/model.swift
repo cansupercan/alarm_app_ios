@@ -9,6 +9,13 @@ import Foundation
 import UIKit
 import RealmSwift
 
+struct alarmDatatime {
+    var issave:Bool
+    var hor: Int
+    var min: Int
+    var uptime:Bool
+}
+
 class clockdata: Object {
     //自動生成ＵＵＩＤ
     @objc dynamic var tid: Int = 0
