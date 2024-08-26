@@ -11,8 +11,9 @@ import RealmSwift
 class addViewController: UIViewController {
     @IBOutlet weak var tbvaddsee: UITableView!
     
-    var delegate: addViewControllerDelegate?
-    var horf=1,minf=0,uptimef=true
+    weak var delegate: addViewControllerDelegate?
+    
+    
     
     
     override func viewDidLoad() {
@@ -42,17 +43,7 @@ class addViewController: UIViewController {
 
     @objc private func saveButtonTapped() {
         //設定動作
-        let realm = try! Realm()
-        let dataala = clockdata()
-        if let maxTid = realm.objects(clockdata.self).max(ofProperty: "tid") as Int? {
-            dataala.tid = maxTid + 1
-        } else {
-            dataala.tid = 1
-        }
-        
-        try! realm.write {
-            realm.add(dataala)
-        }
+      
         dismiss(animated: true, completion: nil)
     }
     func addtableSet (){tbvaddsee.register(UINib(nibName: "TableViewCell", bundle: nil),forCellReuseIdentifier: TableViewCell.identifier)
@@ -93,7 +84,12 @@ extension addViewController: UITableViewDelegate, UITableViewDataSource  {
         }
     }
 
-protocol addViewControllerDelegate {
-    func passData(uptimef:Bool,horf:Int,minf:Int)
+struct alarmDatatime {
+    var hor: Int
+    var min: Int
+    var uptime:Bool
+}
+protocol addViewControllerDelegate:AnyObject {
+    func passData(_ data: alarmDatatime)
 }
 
