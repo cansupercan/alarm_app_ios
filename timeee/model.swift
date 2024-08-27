@@ -10,12 +10,11 @@ import UIKit
 import RealmSwift
 
 class clockdata: Object {
-    //自動生成ＵＵＩＤ
     @objc dynamic var tid: Int = 0
     @objc dynamic var uptime: Bool = true
     @objc dynamic var timehor:Int = 1
     @objc dynamic var timemin:Int = 1
-    @objc dynamic var repeaT: String = ""
+    @objc dynamic var repeaT:String = ""
     @objc dynamic var message: String = ""
     @objc dynamic var turnsw: Bool = false
         
@@ -24,7 +23,7 @@ class clockdata: Object {
         return "uuid"
     }*/
     
-    convenience init(timemin: Int,tid: Int,timehor: Int, repeaT: String, message: String,uptime: Bool, turnsw: Bool ) {
+convenience init(timemin: Int,tid: Int,timehor: Int, repeaT: String, message: String,uptime: Bool, turnsw: Bool ) {
        self.init()
         self.tid = tid
        self.timehor = timehor

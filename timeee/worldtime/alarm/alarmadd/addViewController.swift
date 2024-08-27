@@ -73,16 +73,23 @@ class addViewController: UIViewController {
         }
         let data1 = alarmDatatime(issave: true, hor: hori, min: mini, uptime: uptimeb)
         //存進realm
-     /*   let realm = try! Realm()
+        let realm = try! Realm()
         let onedata = clockdata()
         onedata.timehor=hori
         onedata.timemin=mini
         onedata.turnsw=true
         onedata.uptime=uptimeb
+        let maxTid = realm.objects(clockdata.self).max(ofProperty: "tid") as Int? ?? 0
+        let newTid = maxTid + 1
+        onedata.tid=newTid
         
+        let cellmes = tbvaddsee.cellForRow(at: IndexPath(row: 1, section: 0)) as? addmesTableViewCell
+        // 獲取 lbmes.text 並設置到 onedata.message
+        onedata.message = cellmes?.lbmes.text ?? ""
+        //onedata.repeaT=尚未實作的功能
         try! realm.write {
             realm.add(onedata)
-        }*/
+        }
         //回傳並關閉畫面
         delegate?.passData(data1)
         dismiss(animated: true, completion: nil)
