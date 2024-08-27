@@ -7,6 +7,7 @@
 
 import UIKit
 import RealmSwift
+import SwiftUI
 
 class MainViewController: UIViewController {
     // MARK: - IBOutlet
@@ -19,13 +20,13 @@ class MainViewController: UIViewController {
     var delegate: MainViewController?
     // MARK: - Property
     var isedit:Bool = false
-    
+    var adddata: alarmDatatime?
     // MARK: - LifeCycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
         setUI()
-        print(Realm.Configuration.defaultConfiguration.fileURL!)
+        //print(Realm.Configuration.defaultConfiguration.fileURL!)
     }
     
     func setUI(){
@@ -54,7 +55,7 @@ class MainViewController: UIViewController {
     // MARK: - IBAction
     @objc func addalarm(){
         let addVC = addViewController()
-        //addVC.delegate = self
+        addVC.delegate = self
         let navigationController = UINavigationController(rootViewController: addVC)
         self.present(navigationController, animated: true)
     }
@@ -128,8 +129,9 @@ extension MainViewController: UITableViewDelegate, UITableViewDataSource  {
 }
 
 extension MainViewController: addViewControllerDelegate {
-    func passData(uptimef:Bool,horf:Int,minf:Int) {
-       
+    func passData(_ data: alarmDatatime){
+        self.adddata = data
+        print("Received data: \(data)")
     }
 }
 

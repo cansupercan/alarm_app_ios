@@ -36,3 +36,9 @@ class clockdata: Object {
         
    }
 }
+struct alarmDatatime {
+    var issave:Bool
+    var hor: Int
+    var min: Int
+    var uptime:Bool
+}

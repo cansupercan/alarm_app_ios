@@ -11,6 +11,7 @@ import RealmSwift
 class addViewController: UIViewController {
     @IBOutlet weak var tbvaddsee: UITableView!
     
+    @IBOutlet weak var dpktime: UIDatePicker!
     weak var delegate: addViewControllerDelegate?
     
     
@@ -50,18 +51,19 @@ class addViewController: UIViewController {
         let ktime=dpktime.date
         let dateFormatter = DateFormatter()
         
+        dateFormatter.dateFormat = "hh"
         guard let hors = dateFormatter.string(from: ktime) as String?,
                   let hori = Int(hors) else {
                 print("Error: Unable to convert hour.")
                 return
-            }
+        }
             
-            dateFormatter.dateFormat = "mm"
-            guard let mins = dateFormatter.string(from: ktime) as String?,
+        dateFormatter.dateFormat = "mm"
+        guard let mins = dateFormatter.string(from: ktime) as String?,
                   let mini = Int(mins) else {
                 print("Error: Unable to convert minute.")
                 return
-            }
+        }
         
         dateFormatter.dateFormat = "a"
         let uptimes = dateFormatter.string(from: ktime)
@@ -72,7 +74,7 @@ class addViewController: UIViewController {
         }
         let data1 = alarmDatatime(issave: true, hor: hori, min: mini, uptime: uptimeb)
         delegate?.passData(data1)
-        //dismiss(animated: true, completion: nil)
+        dismiss(animated: true, completion: nil)
 
     }
     func addtableSet (){tbvaddsee.register(UINib(nibName: "TableViewCell", bundle: nil),forCellReuseIdentifier: TableViewCell.identifier)
@@ -113,11 +115,7 @@ extension addViewController: UITableViewDelegate, UITableViewDataSource  {
         }
     }
 
-struct alarmDatatime {
-    var hor: Int
-    var min: Int
-    var uptime:Bool
-}
+
 protocol addViewControllerDelegate:AnyObject {
     func passData(_ data: alarmDatatime)
 }
