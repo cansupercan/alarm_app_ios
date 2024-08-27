@@ -43,10 +43,10 @@ class addViewController: UIViewController {
 
     @objc private func saveButtonTapped() {
         //設定動作
-<<<<<<< Updated upstream
+
       
         dismiss(animated: true, completion: nil)
-=======
+
         let ktime=dpktime.date
         let dateFormatter = DateFormatter()
         
@@ -73,7 +73,7 @@ class addViewController: UIViewController {
         let data1 = alarmDatatime(issave: true, hor: hori, min: mini, uptime: uptimeb)
         delegate?.passData(data1)
         //dismiss(animated: true, completion: nil)
->>>>>>> Stashed changes
+
     }
     func addtableSet (){tbvaddsee.register(UINib(nibName: "TableViewCell", bundle: nil),forCellReuseIdentifier: TableViewCell.identifier)
         tbvaddsee.delegate = self
