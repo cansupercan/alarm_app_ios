@@ -44,7 +44,9 @@ class MainViewController: UIViewController {
         
         navigationController?.navigationBar.prefersLargeTitles = true
         let btnRight = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addalarm))
+        let btnlight = UIBarButtonItem(barButtonSystemItem: .edit, target: self, action: #selector(editfunc))
         navigationItem.rightBarButtonItem = btnRight
+        navigationItem.leftBarButtonItem = btnlight
 
     }
     
@@ -58,6 +60,9 @@ class MainViewController: UIViewController {
         addVC.delegate = self
         let navigationController = UINavigationController(rootViewController: addVC)
         self.present(navigationController, animated: true)
+    }
+    @objc func editfunc() {
+        print("edit")
     }
     // MARK: - Function
     
@@ -127,12 +132,17 @@ extension MainViewController: UITableViewDelegate, UITableViewDataSource  {
     }
     
 }
-
+//接收傳值
 extension MainViewController: addViewControllerDelegate {
     func passData(_ data: alarmDatatime){
         self.adddata = data
-        print("Received data: \(data)")
+        tbvsee.reloadData()
+        //print("Received data: \(data)")
     }
 }
-
-
+//傳送傳值
+/*
+extension MainViewController: AnyObject {
+    func mainData(editing:Bool,rows:Int)
+}
+*/

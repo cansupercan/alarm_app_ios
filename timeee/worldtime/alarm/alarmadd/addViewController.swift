@@ -16,7 +16,6 @@ class addViewController: UIViewController {
     
     
     
-    
     override func viewDidLoad() {
         super.viewDidLoad()
             addtableSet()
@@ -47,7 +46,7 @@ class addViewController: UIViewController {
 
       
         dismiss(animated: true, completion: nil)
-
+        //對date picker 取值
         let ktime=dpktime.date
         let dateFormatter = DateFormatter()
         
@@ -73,6 +72,18 @@ class addViewController: UIViewController {
             uptimeb=true
         }
         let data1 = alarmDatatime(issave: true, hor: hori, min: mini, uptime: uptimeb)
+        //存進realm
+     /*   let realm = try! Realm()
+        let onedata = clockdata()
+        onedata.timehor=hori
+        onedata.timemin=mini
+        onedata.turnsw=true
+        onedata.uptime=uptimeb
+        
+        try! realm.write {
+            realm.add(onedata)
+        }*/
+        //回傳並關閉畫面
         delegate?.passData(data1)
         dismiss(animated: true, completion: nil)
 
@@ -118,5 +129,10 @@ extension addViewController: UITableViewDelegate, UITableViewDataSource  {
 
 protocol addViewControllerDelegate:AnyObject {
     func passData(_ data: alarmDatatime)
+    
 }
-
+/*protocol addViewControllerDelegate:MainViewController{
+    func mainData(editing:Bool,rows:Int){
+        //self. = data
+    }
+}*/
