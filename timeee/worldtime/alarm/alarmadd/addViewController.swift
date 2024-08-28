@@ -19,11 +19,15 @@ class addViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
             addtableSet()
+            addsetUI()
+        setupNavigationBarButton()
+    }
+    
+    func addsetUI() {
         tbvaddsee.register(UINib(nibName: "addloopTableViewCell", bundle: nil), forCellReuseIdentifier: "addloopTableViewCell")
         tbvaddsee.register(UINib(nibName: "addmesTableViewCell", bundle: nil), forCellReuseIdentifier: "addmesTableViewCell")
         tbvaddsee.register(UINib(nibName: "soundTableViewCell", bundle: nil), forCellReuseIdentifier: "soundTableViewCell")
         tbvaddsee.register(UINib(nibName: "addreTableViewCell", bundle: nil), forCellReuseIdentifier: "addreTableViewCell")
-        setupNavigationBarButton()
     }
     private func setupNavigationBarButton() {
            // 宣告按鈕
@@ -42,12 +46,8 @@ class addViewController: UIViewController {
     }
 
     @objc private func saveButtonTapped() {
-        //設定動作
-
-      
-        dismiss(animated: true, completion: nil)
         //對date picker 取值
-        let ktime=dpktime.date
+        let ktime = dpktime.date
         let dateFormatter = DateFormatter()
         
         dateFormatter.dateFormat = "hh"
@@ -75,9 +75,9 @@ class addViewController: UIViewController {
         //存進realm
         let realm = try! Realm()
         let onedata = clockdata()
-        onedata.timehor=hori
-        onedata.timemin=mini
-        onedata.turnsw=true
+        onedata.timehor = hori
+        onedata.timemin = mini
+        onedata.turnsw = true
         onedata.uptime=uptimeb
         let maxTid = realm.objects(clockdata.self).max(ofProperty: "tid") as Int? ?? 0
         let newTid = maxTid + 1
@@ -85,7 +85,7 @@ class addViewController: UIViewController {
         
         let cellmes = tbvaddsee.cellForRow(at: IndexPath(row: 1, section: 0)) as? addmesTableViewCell
         // 獲取 lbmes.text 並設置到 onedata.message
-        onedata.message = cellmes?.lbmes.text ?? ""
+        onedata.message = cellmes?.txfmes.text ?? ""
         //onedata.repeaT=尚未實作的功能
         try! realm.write {
             realm.add(onedata)
@@ -102,7 +102,7 @@ class addViewController: UIViewController {
     }
     func setloopcell()  {
         
-        if dayselect[6]==1 && dayselect[5]==1{daysee="週末>"}
+        //if dayselect[6]==1 && dayselect[5]==1{daysee="週末>"}
     }
     /*
     // MARK: - Navigation

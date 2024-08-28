@@ -9,7 +9,7 @@ import UIKit
 
 class addmesTableViewCell: UITableViewCell {
     static let identifier = "addmesTableViewCell"
-    @IBOutlet weak var lbmes: UITextField!
+    @IBOutlet weak var txfmes: UITextField!
     
     override func awakeFromNib() {
         super.awakeFromNib()

@@ -24,11 +24,8 @@
                     <rect key="frame" x="20.5" y="315" width="373" height="195.5"/>
                     <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                 </tableView>
-                <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="time" minuteInterval="1" style="wheels" useCurrentDate="NO" translatesAutoresizingMaskIntoConstraints="NO" id="R9L-96-QI6">
+                <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="time" minuteInterval="1" style="wheels" translatesAutoresizingMaskIntoConstraints="NO" id="R9L-96-QI6">
                     <rect key="frame" x="0.0" y="123" width="414" height="162"/>
-                    <date key="date" timeIntervalSinceReferenceDate="746446573.57483399">
-                        <!--2024-08-27 10:16:13 +0000-->
-                    </date>
                     <locale key="locale" localeIdentifier="zh_TW"/>
                 </datePicker>
             </subviews>
