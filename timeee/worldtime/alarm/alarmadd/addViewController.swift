@@ -13,8 +13,8 @@ class addViewController: UIViewController {
     
     @IBOutlet weak var dpktime: UIDatePicker!
     weak var delegate: addViewControllerDelegate?
-    
-    
+   // var dayselect = [0,0,0,0,0,0,0]
+   // var daysee="永不>"
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -100,6 +100,10 @@ class addViewController: UIViewController {
         tbvaddsee.dataSource = self
         
     }
+    func setloopcell()  {
+        
+        if dayselect[6]==1 && dayselect[5]==1{daysee="週末>"}
+    }
     /*
     // MARK: - Navigation
 
@@ -117,7 +121,9 @@ extension addViewController: UITableViewDelegate, UITableViewDataSource  {
         switch indexPath.row{
         case 0:
                 let cell = tableView.dequeueReusableCell(withIdentifier: "addloopTableViewCell", for: indexPath) as! addloopTableViewCell
-                return cell
+            setloopcell()
+            cell.laloopsee.text = day_value.shared.daysee
+            return cell
             case 1:
                 let cell = tableView.dequeueReusableCell(withIdentifier: "addmesTableViewCell", for: indexPath) as! addmesTableViewCell
                 return cell

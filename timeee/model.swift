@@ -41,3 +41,9 @@ struct alarmDatatime {
     var min: Int
     var uptime:Bool
 }
+class day_value {
+    var select = [0,0,0,0,0,0,0]
+    var daysee="永不>"
+    static let shared = day_value()
+    private init() {}
+}

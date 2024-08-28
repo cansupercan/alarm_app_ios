@@ -1,17 +1,15 @@
 //
-//  addloopTableViewCell.swift
+//  repTableViewCell.swift
 //  timeee
 //
-//  Created by imac 1682's MacBook Pro on 2024/8/19.
+//  Created by imac 1682's MacBook Pro on 2024/8/28.
 //
 
 import UIKit
 
-class addloopTableViewCell: UITableViewCell {
-    static let identifier = "addloopTableViewCell"
-    
-    @IBOutlet weak var laloopsee: UILabel!
-    
+class repTableViewCell: UITableViewCell {
+    static let identifier = "repTableViewCell"
+    @IBOutlet weak var lareptbvlab: UILabel!
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code

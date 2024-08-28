@@ -18,6 +18,10 @@
 		7D2AD1B92C7318FE00A02195 /* soundTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7D2AD1B72C7318FE00A02195 /* soundTableViewCell.xib */; };
 		7D2AD1BC2C731A3100A02195 /* addreTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D2AD1BA2C731A3100A02195 /* addreTableViewCell.swift */; };
 		7D2AD1BD2C731A3100A02195 /* addreTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7D2AD1BB2C731A3100A02195 /* addreTableViewCell.xib */; };
+		7D5CD9EA2C7ED54300694AFB /* repViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D5CD9E82C7ED54300694AFB /* repViewController.swift */; };
+		7D5CD9EB2C7ED54400694AFB /* repViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7D5CD9E92C7ED54300694AFB /* repViewController.xib */; };
+		7D5CD9EE2C7ED55B00694AFB /* repTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D5CD9EC2C7ED55B00694AFB /* repTableViewCell.swift */; };
+		7D5CD9EF2C7ED55B00694AFB /* repTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7D5CD9ED2C7ED55B00694AFB /* repTableViewCell.xib */; };
 		7D8FC70C2C6F31A500FED610 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D8FC70B2C6F31A500FED610 /* AppDelegate.swift */; };
 		7D8FC70E2C6F31A500FED610 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D8FC70D2C6F31A500FED610 /* SceneDelegate.swift */; };
 		7D8FC7152C6F31A800FED610 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7D8FC7142C6F31A800FED610 /* Assets.xcassets */; };
@@ -43,6 +47,10 @@
 		7D2AD1B72C7318FE00A02195 /* soundTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = soundTableViewCell.xib; sourceTree = "<group>"; };
 		7D2AD1BA2C731A3100A02195 /* addreTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = addreTableViewCell.swift; sourceTree = "<group>"; };
 		7D2AD1BB2C731A3100A02195 /* addreTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = addreTableViewCell.xib; sourceTree = "<group>"; };
+		7D5CD9E82C7ED54300694AFB /* repViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = repViewController.swift; sourceTree = "<group>"; };
+		7D5CD9E92C7ED54300694AFB /* repViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = repViewController.xib; sourceTree = "<group>"; };
+		7D5CD9EC2C7ED55B00694AFB /* repTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = repTableViewCell.swift; sourceTree = "<group>"; };
+		7D5CD9ED2C7ED55B00694AFB /* repTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = repTableViewCell.xib; sourceTree = "<group>"; };
 		7D8FC7082C6F31A500FED610 /* timeee.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = timeee.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7D8FC70B2C6F31A500FED610 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		7D8FC70D2C6F31A500FED610 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -96,6 +104,7 @@
 		7D2AD1A32C72FD6500A02195 /* alarmadd */ = {
 			isa = PBXGroup;
 			children = (
+				7D5CD9E72C7ED50F00694AFB /* repview */,
 				7D2AD19A2C72F85C00A02195 /* addViewController.swift */,
 				7D2AD19B2C72F85C00A02195 /* addViewController.xib */,
 				7D2AD1AC2C73162D00A02195 /* addloopTableViewCell.swift */,
@@ -119,6 +128,17 @@
 				7D8FC7202C6F385800FED610 /* MainViewController.xib */,
 			);
 			path = main;
+			sourceTree = "<group>";
+		};
+		7D5CD9E72C7ED50F00694AFB /* repview */ = {
+			isa = PBXGroup;
+			children = (
+				7D5CD9E82C7ED54300694AFB /* repViewController.swift */,
+				7D5CD9E92C7ED54300694AFB /* repViewController.xib */,
+				7D5CD9EC2C7ED55B00694AFB /* repTableViewCell.swift */,
+				7D5CD9ED2C7ED55B00694AFB /* repTableViewCell.xib */,
+			);
+			path = repview;
 			sourceTree = "<group>";
 		};
 		7D8FC6FF2C6F31A500FED610 = {
@@ -230,6 +250,8 @@
 				7D8FC7152C6F31A800FED610 /* Assets.xcassets in Resources */,
 				7D2AD1B32C7317EE00A02195 /* addmesTableViewCell.xib in Resources */,
 				7D2AD19D2C72F85C00A02195 /* addViewController.xib in Resources */,
+				7D5CD9EB2C7ED54400694AFB /* repViewController.xib in Resources */,
+				7D5CD9EF2C7ED55B00694AFB /* repTableViewCell.xib in Resources */,
 				7D2AD1BD2C731A3100A02195 /* addreTableViewCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -288,7 +310,9 @@
 				7D2AD1BC2C731A3100A02195 /* addreTableViewCell.swift in Sources */,
 				7D8FC7212C6F385800FED610 /* MainViewController.swift in Sources */,
 				7D2AD1A22C72FB4800A02195 /* model.swift in Sources */,
+				7D5CD9EA2C7ED54300694AFB /* repViewController.swift in Sources */,
 				7D8FC7252C6F388E00FED610 /* TableViewCell.swift in Sources */,
+				7D5CD9EE2C7ED55B00694AFB /* repTableViewCell.swift in Sources */,
 				7D8FC70C2C6F31A500FED610 /* AppDelegate.swift in Sources */,
 				7D2AD1B22C7317EE00A02195 /* addmesTableViewCell.swift in Sources */,
 				7D2AD19C2C72F85C00A02195 /* addViewController.swift in Sources */,
