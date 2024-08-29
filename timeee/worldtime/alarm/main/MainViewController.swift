@@ -17,7 +17,7 @@ class MainViewController: UIViewController {
     @IBOutlet weak var bbcount: UITabBarItem!
     @IBOutlet weak var bbworldtime: UITabBarItem!
     @IBOutlet weak var bbalarm: UITabBarItem!
-    var delegate: MainViewController?
+    var delegatem: MainViewControllerDelegate?
     // MARK: - Property
     var isedit:Bool = false
     var adddata: alarmDatatime?
@@ -41,7 +41,6 @@ class MainViewController: UIViewController {
     }
     func setnev(){
         self.title = "鬧鐘"
-        
         navigationController?.navigationBar.prefersLargeTitles = true
         let btnRight = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addalarm))
         let btnlight = UIBarButtonItem(barButtonSystemItem: .edit, target: self, action: #selector(editfunc))
@@ -136,6 +135,7 @@ extension MainViewController: UITableViewDelegate, UITableViewDataSource  {
     }
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         // 當單元格被點擊時執行跳轉
+        delegatem?.mainData(editing: true, rows: indexPath.row)
         let addVC = addViewController()
         addVC.delegate = self
         let navigationController = UINavigationController(rootViewController: addVC)
