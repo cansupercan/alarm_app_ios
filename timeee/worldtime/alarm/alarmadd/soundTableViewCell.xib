@@ -17,13 +17,13 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="提示音" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="joW-D0-HPn">
-                        <rect key="frame" x="16" y="8.5" width="71.5" height="27"/>
+                        <rect key="frame" x="38.5" y="8.5" width="71.5" height="27"/>
                         <fontDescription key="fontDescription" type="system" pointSize="22"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="震動&gt;" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2GW-UX-LfR">
-                        <rect key="frame" x="246" y="8.5" width="58" height="27"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="震動" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2GW-UX-LfR">
+                        <rect key="frame" x="275" y="8.5" width="58" height="27"/>
                         <fontDescription key="fontDescription" type="system" pointSize="22"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
@@ -36,8 +36,8 @@
                     <constraint firstItem="2GW-UX-LfR" firstAttribute="width" secondItem="H2p-sc-9uM" secondAttribute="width" multiplier="0.18125" id="Ik5-xZ-KIT"/>
                     <constraint firstItem="2GW-UX-LfR" firstAttribute="height" secondItem="H2p-sc-9uM" secondAttribute="height" multiplier="0.613636" id="KI1-jd-Hpt"/>
                     <constraint firstItem="2GW-UX-LfR" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="TQB-vB-opi"/>
-                    <constraint firstAttribute="trailing" secondItem="joW-D0-HPn" secondAttribute="trailing" constant="232.5" id="Uok-Ao-sT6"/>
-                    <constraint firstItem="2GW-UX-LfR" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="246" id="uK6-US-bOb"/>
+                    <constraint firstAttribute="trailing" secondItem="joW-D0-HPn" secondAttribute="trailing" constant="210" id="Uok-Ao-sT6"/>
+                    <constraint firstItem="2GW-UX-LfR" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="275" id="uK6-US-bOb"/>
                 </constraints>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>

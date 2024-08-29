@@ -124,12 +124,14 @@ extension addViewController: UITableViewDelegate, UITableViewDataSource  {
                 let cell = tableView.dequeueReusableCell(withIdentifier: "addloopTableViewCell", for: indexPath) as! addloopTableViewCell
             setloopcell()
             cell.laloopsee.text = day_value.shared.daysee
+            cell.accessoryType = .disclosureIndicator
             return cell
             case 1:
                 let cell = tableView.dequeueReusableCell(withIdentifier: "addmesTableViewCell", for: indexPath) as! addmesTableViewCell
                 return cell
             case 2:
                 let cell = tableView.dequeueReusableCell(withIdentifier: "soundTableViewCell", for: indexPath) as! soundTableViewCell
+            cell.accessoryType = .disclosureIndicator
                 return cell
             case 3:
                 let cell = tableView.dequeueReusableCell(withIdentifier: "addreTableViewCell", for: indexPath) as! addreTableViewCell
