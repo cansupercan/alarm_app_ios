@@ -12,12 +12,12 @@
         <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="69" id="KGk-i7-Jjw" customClass="TableViewCell" customModule="timeee" customModuleProvider="target">
             <rect key="frame" x="0.0" y="0.0" width="334" height="69"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" ambiguous="YES" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
                 <rect key="frame" x="0.0" y="0.0" width="334" height="69"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yk2-FR-zQZ">
-                        <rect key="frame" x="44" y="10.5" width="99" height="32.5"/>
+                        <rect key="frame" x="44" y="16" width="64" height="27"/>
                         <fontDescription key="fontDescription" type="system" pointSize="27"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
@@ -30,7 +30,7 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="鬧鐘" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gBS-aY-WRp">
-                        <rect key="frame" x="7" y="44.5" width="29" height="20.5"/>
+                        <rect key="frame" x="7" y="41" width="29" height="17"/>
                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
@@ -42,15 +42,12 @@
                 <constraints>
                     <constraint firstItem="gBS-aY-WRp" firstAttribute="height" secondItem="tLz-TE-DI4" secondAttribute="height" id="Aqe-8H-suM"/>
                     <constraint firstItem="yk2-FR-zQZ" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="16" id="DCj-F2-dpe"/>
-                    <constraint firstItem="tLz-TE-DI4" firstAttribute="width" secondItem="yk2-FR-zQZ" secondAttribute="width" multiplier="0.292929" id="EOE-gh-Psv"/>
                     <constraint firstItem="gBS-aY-WRp" firstAttribute="top" secondItem="tLz-TE-DI4" secondAttribute="bottom" constant="2" id="FFj-Fv-lWT"/>
                     <constraint firstItem="yk2-FR-zQZ" firstAttribute="height" secondItem="H2p-sc-9uM" secondAttribute="height" multiplier="0.391304" id="Gdh-TT-MVA"/>
                     <constraint firstItem="tLz-TE-DI4" firstAttribute="height" secondItem="yk2-FR-zQZ" secondAttribute="height" multiplier="0.62963" id="JAf-kv-Xfv"/>
                     <constraint firstItem="yk2-FR-zQZ" firstAttribute="leading" secondItem="tLz-TE-DI4" secondAttribute="trailing" constant="8" symbolic="YES" id="PXt-T7-u5Z"/>
                     <constraint firstItem="gBS-aY-WRp" firstAttribute="leading" secondItem="tLz-TE-DI4" secondAttribute="leading" id="dRS-3H-5xr"/>
-                    <constraint firstItem="tLz-TE-DI4" firstAttribute="top" secondItem="yk2-FR-zQZ" secondAttribute="bottom" constant="-21" id="lDS-Df-6It"/>
                     <constraint firstItem="yk2-FR-zQZ" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="44" id="s0N-Sl-QZ9"/>
-                    <constraint firstItem="yk2-FR-zQZ" firstAttribute="width" secondItem="H2p-sc-9uM" secondAttribute="width" multiplier="0.296407" id="s3m-hJ-E77"/>
                     <constraint firstItem="gBS-aY-WRp" firstAttribute="width" secondItem="tLz-TE-DI4" secondAttribute="width" id="uEI-3q-BDr"/>
                 </constraints>
             </tableViewCellContentView>

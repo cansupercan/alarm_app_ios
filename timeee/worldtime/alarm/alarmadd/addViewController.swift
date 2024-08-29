@@ -9,20 +9,24 @@ import UIKit
 import RealmSwift
 
 class addViewController: UIViewController {
+    // MARK: - IBOutlet
+    
     @IBOutlet weak var tbvaddsee: UITableView!
     
     @IBOutlet weak var dpktime: UIDatePicker!
+    // MARK: - Property
     weak var delegate: addViewControllerDelegate?
    // var dayselect = [0,0,0,0,0,0,0]
    // var daysee="永不>"
-    
+    // MARK: - LifeCycle
     override func viewDidLoad() {
         super.viewDidLoad()
             addtableSet()
             addsetUI()
         setupNavigationBarButton()
     }
-    
+    // MARK: - UI Settings
+
     func addsetUI() {
         tbvaddsee.register(UINib(nibName: "addloopTableViewCell", bundle: nil), forCellReuseIdentifier: "addloopTableViewCell")
         tbvaddsee.register(UINib(nibName: "addmesTableViewCell", bundle: nil), forCellReuseIdentifier: "addmesTableViewCell")
@@ -40,6 +44,9 @@ class addViewController: UIViewController {
            navigationItem.rightBarButtonItem = saveButton
         navigationItem.title = "新增鬧鐘"
        }
+    // MARK: - IBAction
+
+    // MARK: - Function
     @objc private func cancelButtonTapped () {
             // 設定動作
         dismiss(animated: true, completion: nil)
@@ -104,14 +111,8 @@ class addViewController: UIViewController {
         
         //if dayselect[6]==1 && dayselect[5]==1{daysee="週末>"}
     }
-    /*
-    // MARK: - Navigation
-
-   
-    */
-
 }
-
+// MARK: - Extensions
 extension addViewController: UITableViewDelegate, UITableViewDataSource  {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return 4

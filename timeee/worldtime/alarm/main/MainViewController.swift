@@ -95,8 +95,12 @@ extension MainViewController: UITableViewDelegate, UITableViewDataSource  {
             eetime="下午"
         }
         // 設定文本
+        var minzero = "\(nowdata.timemin)" //給個位數字補零
+        if( nowdata.timemin<10) {
+            minzero = "0\(nowdata.timemin)"
+        }
         cell.lbnoon.text = eetime
-        cell.lbtime.text = "\(nowdata.timehor):\(nowdata.timemin)"
+        cell.lbtime.text = "\(nowdata.timehor):\(minzero)"
         cell.swturn.isOn = nowdata.turnsw
         return cell
     }
