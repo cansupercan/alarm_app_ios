@@ -15,13 +15,29 @@ class repViewController: UIViewController {
     // MARK: - LifeCycle
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        setupBarButton()
     }
     // MARK: - UI Settings
+    private func setupBarButton() {
+           // 宣告按鈕
+          /* let cancelButton = UIBarButtonItem(title: "返回", style: .plain, target: self, action: #selector(cancelButtonTapped))*/
+        let backButton = UIBarButtonItem(image: UIImage(systemName: "chevron.left"),
+                                         style: .plain,
+                                         target: self,
+                                         action: #selector(backaction))
+        backButton.title = "返回"
+        navigationItem.leftBarButtonItem = backButton
 
+           // 增加按鈕
+        navigationItem.title = "新增鬧鐘"
+       }
     // MARK: - IBAction
 
     // MARK: - Function
+    @objc private func backaction () {
+            // 設定動作
+        //dismiss(animated: true, completion: nil)
+    }
 
 }
 // MARK: - Extensions

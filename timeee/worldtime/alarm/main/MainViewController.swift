@@ -47,7 +47,7 @@ class MainViewController: UIViewController {
         let btnlight = UIBarButtonItem(barButtonSystemItem: .edit, target: self, action: #selector(editfunc))
         navigationItem.rightBarButtonItem = btnRight
         navigationItem.leftBarButtonItem = btnlight
-
+        
     }
     
     
@@ -134,7 +134,13 @@ extension MainViewController: UITableViewDelegate, UITableViewDataSource  {
         // 返回配置
         return UISwipeActionsConfiguration(actions: [removeAction])
     }
-    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        // 當單元格被點擊時執行跳轉
+        let addVC = addViewController()
+        addVC.delegate = self
+        let navigationController = UINavigationController(rootViewController: addVC)
+        self.present(navigationController, animated: true)
+    }
 }
 //接收傳值
 extension MainViewController: addViewControllerDelegate {
@@ -144,9 +150,12 @@ extension MainViewController: addViewControllerDelegate {
         //print("Received data: \(data)")
     }
 }
-//傳送傳值
-/*
-extension MainViewController: AnyObject {
+protocol MainViewControllerDelegate:AnyObject {
     func mainData(editing:Bool,rows:Int)
 }
-*/
+//傳送傳值
+/*
+ extension MainViewController: AnyObject {
+ func mainData(editing:Bool,rows:Int)
+ }
+ */
