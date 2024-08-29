@@ -30,6 +30,7 @@
 		7D8FC7222C6F385800FED610 /* MainViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7D8FC7202C6F385800FED610 /* MainViewController.xib */; };
 		7D8FC7252C6F388E00FED610 /* TableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D8FC7232C6F388E00FED610 /* TableViewCell.swift */; };
 		7D8FC7262C6F388E00FED610 /* TableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7D8FC7242C6F388E00FED610 /* TableViewCell.xib */; };
+		7DFE65FF2C803B5C00E6B612 /* Singleton＿Pattern.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DFE65FE2C803B5C00E6B612 /* Singleton＿Pattern.swift */; };
 		B171F73A4F7B02DFC8CF51E0 /* Pods_timeee.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 10FF1D82EF7F64BE35DD23DE /* Pods_timeee.framework */; };
 /* End PBXBuildFile section */
 
@@ -61,6 +62,7 @@
 		7D8FC7202C6F385800FED610 /* MainViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MainViewController.xib; sourceTree = "<group>"; };
 		7D8FC7232C6F388E00FED610 /* TableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewCell.swift; sourceTree = "<group>"; };
 		7D8FC7242C6F388E00FED610 /* TableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TableViewCell.xib; sourceTree = "<group>"; };
+		7DFE65FE2C803B5C00E6B612 /* Singleton＿Pattern.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Singleton＿Pattern.swift"; sourceTree = "<group>"; };
 		CEC63FC91A3BB9B84E9DC2D8 /* Pods-timeee.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-timeee.debug.xcconfig"; path = "Target Support Files/Pods-timeee/Pods-timeee.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -87,6 +89,7 @@
 		7D2AD19E2C72FA4500A02195 /* alarm */ = {
 			isa = PBXGroup;
 			children = (
+				7DFE65FB2C803A5700E6B612 /* model */,
 				7D2AD1BE2C731BB300A02195 /* main */,
 				7D2AD1A32C72FD6500A02195 /* alarmadd */,
 			);
@@ -168,9 +171,17 @@
 				7D8FC7142C6F31A800FED610 /* Assets.xcassets */,
 				7D8FC7162C6F31A800FED610 /* LaunchScreen.storyboard */,
 				7D8FC7192C6F31A800FED610 /* Info.plist */,
-				7D2AD1A12C72FB4800A02195 /* model.swift */,
 			);
 			path = timeee;
+			sourceTree = "<group>";
+		};
+		7DFE65FB2C803A5700E6B612 /* model */ = {
+			isa = PBXGroup;
+			children = (
+				7D2AD1A12C72FB4800A02195 /* model.swift */,
+				7DFE65FE2C803B5C00E6B612 /* Singleton＿Pattern.swift */,
+			);
+			path = model;
 			sourceTree = "<group>";
 		};
 		D3394D2670C6AB34C47B4C53 /* Pods */ = {
@@ -310,6 +321,7 @@
 				7D2AD1BC2C731A3100A02195 /* addreTableViewCell.swift in Sources */,
 				7D8FC7212C6F385800FED610 /* MainViewController.swift in Sources */,
 				7D2AD1A22C72FB4800A02195 /* model.swift in Sources */,
+				7DFE65FF2C803B5C00E6B612 /* Singleton＿Pattern.swift in Sources */,
 				7D5CD9EA2C7ED54300694AFB /* repViewController.swift in Sources */,
 				7D8FC7252C6F388E00FED610 /* TableViewCell.swift in Sources */,
 				7D5CD9EE2C7ED55B00694AFB /* repTableViewCell.swift in Sources */,
