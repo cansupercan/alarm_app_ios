@@ -11,11 +11,12 @@ class repViewController: UIViewController {
     // MARK: - IBOutlet
     @IBOutlet weak var tbvrepsee: UITableView!
     // MARK: - Property
-    var day = ["星期一","星期二","星期三","星期四","星期五","星期六","星期天"]
+    let day = ["星期一","星期二","星期三","星期四","星期五","星期六","星期天"]
     // MARK: - LifeCycle
     override func viewDidLoad() {
         super.viewDidLoad()
         setupBarButton()
+        reptableSet()
     }
     // MARK: - UI Settings
     private func setupBarButton() {
@@ -37,6 +38,11 @@ class repViewController: UIViewController {
     @objc private func backaction () {
             // 設定動作
         //dismiss(animated: true, completion: nil)
+    }
+    func reptableSet (){tbvrepsee.register(UINib(nibName: "repTableViewCell", bundle: nil),forCellReuseIdentifier: repTableViewCell.identifier)
+        tbvrepsee.delegate = self
+        tbvrepsee.dataSource = self
+        
     }
 
 }

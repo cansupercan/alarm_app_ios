@@ -17,24 +17,24 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bCJ-y2-xBs">
-                        <rect key="frame" x="9" y="8.5" width="52" height="27"/>
+                        <rect key="frame" x="8" y="8.5" width="304" height="27"/>
                         <fontDescription key="fontDescription" type="system" pointSize="22"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
                 </subviews>
                 <constraints>
-                    <constraint firstItem="bCJ-y2-xBs" firstAttribute="height" secondItem="H2p-sc-9uM" secondAttribute="height" multiplier="0.613636" id="RTt-vT-mvF"/>
-                    <constraint firstAttribute="trailing" secondItem="bCJ-y2-xBs" secondAttribute="trailing" constant="259" id="TmU-QN-vQu"/>
-                    <constraint firstItem="bCJ-y2-xBs" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="WwQ-HF-Vgd"/>
-                    <constraint firstItem="bCJ-y2-xBs" firstAttribute="width" secondItem="H2p-sc-9uM" secondAttribute="width" multiplier="0.1625" id="Xl7-28-Twb"/>
+                    <constraint firstItem="bCJ-y2-xBs" firstAttribute="centerX" secondItem="H2p-sc-9uM" secondAttribute="centerX" id="NuY-aD-9dR"/>
+                    <constraint firstItem="bCJ-y2-xBs" firstAttribute="height" secondItem="H2p-sc-9uM" secondAttribute="height" multiplier="0.613636" id="YF6-8Y-u6g"/>
+                    <constraint firstItem="bCJ-y2-xBs" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="brC-SI-iv1"/>
+                    <constraint firstItem="bCJ-y2-xBs" firstAttribute="width" secondItem="H2p-sc-9uM" secondAttribute="width" multiplier="0.95" id="lxp-1B-ngx"/>
                 </constraints>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
             <connections>
                 <outlet property="lareptbvlab" destination="bCJ-y2-xBs" id="iMF-V6-7kt"/>
             </connections>
-            <point key="canvasLocation" x="132" y="46"/>
+            <point key="canvasLocation" x="131.8840579710145" y="45.535714285714285"/>
         </tableViewCell>
     </objects>
 </document>
