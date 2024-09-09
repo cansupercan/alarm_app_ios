@@ -142,7 +142,7 @@ extension MainViewController: UITableViewDelegate, UITableViewDataSource  {
         self.present(navigationController, animated: true)
     }
 }
-//接收傳值
+//接收傳值(addviw)
 extension MainViewController: addViewControllerDelegate {
     func passData(_ data: alarmDatatime){
         self.adddata = data
@@ -150,10 +150,10 @@ extension MainViewController: addViewControllerDelegate {
         //print("Received data: \(data)")
     }
 }
+//傳送傳值(addview)
 protocol MainViewControllerDelegate:AnyObject {
     func mainData(editing:Bool,rows:Int)
 }
-//傳送傳值
 /*
  extension MainViewController: AnyObject {
  func mainData(editing:Bool,rows:Int)
