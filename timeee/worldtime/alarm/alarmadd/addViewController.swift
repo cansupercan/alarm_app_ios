@@ -19,7 +19,7 @@ class addViewController: UIViewController {
     var isedit = false
     var rows = 0
     var dayselect = [0,0,0,0,0,0,0]
-     var daysee="永不"
+    var daysee="永不"
     // MARK: - LifeCycle
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -110,47 +110,20 @@ class addViewController: UIViewController {
         
     }
     func setloopcell()  {
-        if dayselect[0]==1 && dayselect[1]==1 && dayselect[2]==1 && dayselect[3]==1 && dayselect[4]==1 && dayselect[5]==1 && dayselect[6]==1 {daysee="每天"}
-        else if dayselect[6]==1 && dayselect[5]==1{daysee="週末"}
-        else if dayselect[1]==1 && dayselect[2]==1 && dayselect[0]==1 && dayselect[3]==1 && dayselect[4]==1{daysee="平日"}
-        else{
-            var times = 0
-            for i in 0..<dayselect.count{
-                if dayselect[i] == 0{
-                    times+=1
-                    switch (i){
-                    case 0:
-                        daysee += "週一 "
-                        break
-                    case 1:
-                        daysee += "週二"
-                        break
-                    case 2:
-                        daysee += "週三"
-                        break
-                    case 3:
-                        daysee += "週四"
-                        break
-                    case 4:
-                        daysee += "週五"
-                        break
-                    case 5:
-                        daysee += "週六"
-                        break
-                    case 6:
-                        daysee += "週日"
-                        break
-                    default:
-                        break
-                    }
-                }
-                if times == 0{
-                    daysee="永不"
-                }
-            }
+        var repeatDay: String
+        if selectedDayIndices == [1, 2, 3, 4, 5] { // 星期一到五
+            repeatDay = "平日"
+        } else if selectedDayIndices == [0, 6] { // 星期六和日
+            repeatDay = "週末"
+        } else if selectedDayIndices == [0, 1, 2, 3, 4, 5, 6] { // 每天
+            repeatDay = "每天"
+        } else if selectedDayIndices == [] { // 每天
+            repeatDay = "永不"
+        } else {
+            repeatDay = selectedDayNames.joined(separator: ", ")
         }
-        
     }
+    
 }
 // MARK: - Extensions
 extension addViewController: UITableViewDelegate, UITableViewDataSource  {
@@ -216,8 +189,4 @@ extension addViewController: RepViewControllerDelegate {
     }
 }
 
-/*protocol addViewControllerDelegate:MainViewController{
- func mainData(editing:Bool,rows:Int){
- //self. = data
- }
- }*/
+

@@ -51,10 +51,6 @@ class repViewController: UIViewController {
 
 }
 // MARK: - Extensions
-//定義傳值
-protocol RepViewControllerDelegate: AnyObject {
-    func didSelectDays(checktimes: [Int])
-}
 //tableview設定
 extension repViewController: UITableViewDelegate, UITableViewDataSource  {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -90,7 +86,9 @@ extension repViewController: UITableViewDelegate, UITableViewDataSource  {
             tableView.deselectRow(at: indexPath, animated: true)
         }
     }
-
-    
     }
 
+//定義傳值
+protocol RepViewControllerDelegate: AnyObject {
+    func didSelectDays(checktimes: [Int])
+}

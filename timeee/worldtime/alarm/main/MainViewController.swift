@@ -155,8 +155,3 @@ protocol MainViewControllerDelegate:AnyObject {
     func mainData(editing:Bool,rows:Int)
 }
 
-/*
- extension MainViewController: AnyObject {
- func mainData(editing:Bool,rows:Int)
- }
- */
