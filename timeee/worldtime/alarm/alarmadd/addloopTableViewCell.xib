@@ -22,22 +22,22 @@
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="永不 " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yIf-HF-upd">
-                        <rect key="frame" x="275" y="8.5" width="63" height="27"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="永不 " textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yIf-HF-upd">
+                        <rect key="frame" x="104" y="8.5" width="216" height="27"/>
                         <fontDescription key="fontDescription" type="system" pointSize="22"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
                 </subviews>
                 <constraints>
-                    <constraint firstItem="yIf-HF-upd" firstAttribute="width" secondItem="H2p-sc-9uM" secondAttribute="width" multiplier="0.196875" id="7xa-pg-zAR"/>
-                    <constraint firstItem="yIf-HF-upd" firstAttribute="height" secondItem="H2p-sc-9uM" secondAttribute="height" multiplier="0.613636" id="CAO-n0-I0v"/>
+                    <constraint firstItem="yIf-HF-upd" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="9cD-4w-OFQ"/>
+                    <constraint firstItem="yIf-HF-upd" firstAttribute="height" secondItem="H2p-sc-9uM" secondAttribute="height" multiplier="0.613636" id="GJv-UI-A8t"/>
                     <constraint firstItem="dZI-pF-cpW" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="MJn-7R-XPe"/>
-                    <constraint firstItem="yIf-HF-upd" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="275" id="Q80-TF-adg"/>
                     <constraint firstAttribute="trailing" secondItem="dZI-pF-cpW" secondAttribute="trailing" constant="240" id="V3Y-fm-Qqb"/>
                     <constraint firstItem="dZI-pF-cpW" firstAttribute="height" secondItem="H2p-sc-9uM" secondAttribute="height" multiplier="0.613636" id="a67-QL-wZI"/>
-                    <constraint firstItem="yIf-HF-upd" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="l2O-BE-GPI"/>
+                    <constraint firstItem="yIf-HF-upd" firstAttribute="width" secondItem="H2p-sc-9uM" secondAttribute="width" multiplier="0.675" id="iOE-I2-cQV"/>
                     <constraint firstItem="dZI-pF-cpW" firstAttribute="width" secondItem="H2p-sc-9uM" secondAttribute="width" multiplier="0.140625" id="rcU-tn-Wlh"/>
+                    <constraint firstItem="yIf-HF-upd" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="104" id="y8j-cm-Cak"/>
                 </constraints>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>

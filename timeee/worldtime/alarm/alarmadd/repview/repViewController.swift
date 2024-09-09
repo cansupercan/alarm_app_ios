@@ -12,6 +12,9 @@ class repViewController: UIViewController {
     @IBOutlet weak var tbvrepsee: UITableView!
     // MARK: - Property
     let day = ["星期一","星期二","星期三","星期四","星期五","星期六","星期天"]
+    var checktime = [0,0,0,0,0,0,0]
+    
+    weak var delegate: RepViewControllerDelegate?
     // MARK: - LifeCycle
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -37,7 +40,8 @@ class repViewController: UIViewController {
     // MARK: - Function
     @objc private func backaction () {
             // 設定動作
-        //dismiss(animated: true, completion: nil)
+        delegate?.didSelectDays(checktimes: checktime)
+        navigationController?.popViewController(animated: true)
     }
     func reptableSet (){tbvrepsee.register(UINib(nibName: "repTableViewCell", bundle: nil),forCellReuseIdentifier: repTableViewCell.identifier)
         tbvrepsee.delegate = self
@@ -47,7 +51,11 @@ class repViewController: UIViewController {
 
 }
 // MARK: - Extensions
-
+//定義傳值
+protocol RepViewControllerDelegate: AnyObject {
+    func didSelectDays(checktimes: [Int])
+}
+//tableview設定
 extension repViewController: UITableViewDelegate, UITableViewDataSource  {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return day.count
@@ -59,7 +67,30 @@ extension repViewController: UITableViewDelegate, UITableViewDataSource  {
         }
         // 設定文本
         cell.lareptbvlab.text = day[indexPath.row]
+        if checktime[indexPath.row] == 0 {
+            cell.accessoryType = .none
+        }else{
+            cell.accessoryType = .checkmark
+        }
         return cell
         }
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        var check = 1
+        if let cell = tbvrepsee.cellForRow(at: indexPath) {
+            // 切換勾選狀態
+            if cell.accessoryType == .checkmark {
+                cell.accessoryType = .none
+                check = 0
+            } else {
+                cell.accessoryType = .checkmark
+                
+            }
+            checktime[indexPath.row] = check
+            // 可選：點擊後取消選中狀態
+            tableView.deselectRow(at: indexPath, animated: true)
+        }
+    }
+
+    
     }
 

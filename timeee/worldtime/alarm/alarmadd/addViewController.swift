@@ -18,8 +18,8 @@ class addViewController: UIViewController {
     weak var delegate: addViewControllerDelegate?
     var isedit = false
     var rows = 0
-    // var dayselect = [0,0,0,0,0,0,0]
-    // var daysee="永不>"
+    var dayselect = [0,0,0,0,0,0,0]
+     var daysee="永不"
     // MARK: - LifeCycle
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -110,8 +110,46 @@ class addViewController: UIViewController {
         
     }
     func setloopcell()  {
+        if dayselect[0]==1 && dayselect[1]==1 && dayselect[2]==1 && dayselect[3]==1 && dayselect[4]==1 && dayselect[5]==1 && dayselect[6]==1 {daysee="每天"}
+        else if dayselect[6]==1 && dayselect[5]==1{daysee="週末"}
+        else if dayselect[1]==1 && dayselect[2]==1 && dayselect[0]==1 && dayselect[3]==1 && dayselect[4]==1{daysee="平日"}
+        else{
+            var times = 0
+            for i in 0..<dayselect.count{
+                if dayselect[i] == 0{
+                    times+=1
+                    switch (i){
+                    case 0:
+                        daysee += "週一 "
+                        break
+                    case 1:
+                        daysee += "週二"
+                        break
+                    case 2:
+                        daysee += "週三"
+                        break
+                    case 3:
+                        daysee += "週四"
+                        break
+                    case 4:
+                        daysee += "週五"
+                        break
+                    case 5:
+                        daysee += "週六"
+                        break
+                    case 6:
+                        daysee += "週日"
+                        break
+                    default:
+                        break
+                    }
+                }
+                if times == 0{
+                    daysee="永不"
+                }
+            }
+        }
         
-        //if dayselect[6]==1 && dayselect[5]==1{daysee="週末>"}
     }
 }
 // MARK: - Extensions
@@ -167,6 +205,14 @@ extension addViewController: MainViewControllerDelegate {
     func mainData(editing:Bool,rows:Int){
         self.rows = rows
         self.isedit = editing
+    }
+}
+
+extension addViewController: RepViewControllerDelegate {
+    func didSelectDays(checktimes: [Int]){
+        self.dayselect = checktimes
+        print(checktimes)
+        tbvaddsee.reloadData()
     }
 }
 
