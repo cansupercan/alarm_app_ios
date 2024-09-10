@@ -9,6 +9,10 @@ import UIKit
 
 class sounTableViewCell: UITableViewCell {
 
+    @IBOutlet weak var lbsoundsee: UILabel!
+    
+    static let identifier = "sounTableViewCell"
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
