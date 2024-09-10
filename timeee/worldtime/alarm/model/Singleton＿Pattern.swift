@@ -33,7 +33,7 @@ class day_value {
 }
 
 class sound_value{
-    var daysee = 0
+    var whosoun = 0
     static let shared = sound_value()
     private init() {}
 }

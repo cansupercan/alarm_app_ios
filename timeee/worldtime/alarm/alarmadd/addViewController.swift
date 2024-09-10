@@ -106,6 +106,12 @@ class addViewController: UIViewController {
         let cellmes = tbvaddsee.cellForRow(at: IndexPath(row: 1, section: 0)) as? addmesTableViewCell
         // 獲取 lbmes.text 並設置到 onedata.message
         onedata.message = cellmes?.txfmes.text ?? ""
+        //儲存重複天數
+        var dayst = ""
+        for i in 0..<day_value.shared.select.count{
+            dayst = dayst+"\(day_value.shared.select[i]),"
+        }
+        onedata.repeadate = dayst
         //onedata.repeaT=尚未實作的功能
         try! realm.write {
             realm.add(onedata)

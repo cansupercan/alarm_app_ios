@@ -14,6 +14,7 @@ class soundViewController: UIViewController {
     @IBOutlet weak var tbvsousee: UITableView!
     // MARK: - Property
     let sounmap = ["(長)戰意","戰意音樂完整版","出發","浩氣"]
+    var seceltsoun = sound_value.shared.whosoun
     // MARK: - LifeCycle
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -38,4 +39,26 @@ extension soundViewController: UITableViewDelegate, UITableViewDataSource  {
         cell.lbsoundsee.text = sounmap[indexPath.row]
         return cell
     }
-}
+    //點擊事件
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let beforesoun = sound_value.shared.whosoun
+        let cell1 = tbvsousee.cellForRow(at: beforesoun)
+        if let cell = tbvsousee.cellForRow(at: indexPath) {
+            // 切換勾選狀態
+            if cell.accessoryType == .checkmark {
+               
+                cell.accessoryType = .none
+            } else {
+                
+                cell.accessoryType = .checkmark
+                
+            }
+            
+            // 可選：點擊後取消選中狀態
+            tableView.deselectRow(at: indexPath, animated: true)
+           // print(day_value.shared.select)
+        }
+    }
+        
+    }
+
