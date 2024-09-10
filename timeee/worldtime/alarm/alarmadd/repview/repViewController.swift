@@ -12,35 +12,33 @@ class repViewController: UIViewController {
     @IBOutlet weak var tbvrepsee: UITableView!
     // MARK: - Property
     let day = ["星期一","星期二","星期三","星期四","星期五","星期六","星期天"]
-    var checktime = [0,0,0,0,0,0,0]
-    
-    weak var delegate: RepViewControllerDelegate?
+    var checktime = [Int]()
     // MARK: - LifeCycle
     override func viewDidLoad() {
         super.viewDidLoad()
         setupBarButton()
         reptableSet()
+        checktime=day_value.shared.select
     }
     // MARK: - UI Settings
     private func setupBarButton() {
-           // 宣告按鈕
-          /* let cancelButton = UIBarButtonItem(title: "返回", style: .plain, target: self, action: #selector(cancelButtonTapped))*/
+        // 宣告按鈕
+        
         let backButton = UIBarButtonItem(image: UIImage(systemName: "chevron.left"),
                                          style: .plain,
                                          target: self,
                                          action: #selector(backaction))
         backButton.title = "返回"
         navigationItem.leftBarButtonItem = backButton
-
-           // 增加按鈕
+        
+        // 增加按鈕
         navigationItem.title = "新增鬧鐘"
-       }
+    }
     // MARK: - IBAction
-
+    
     // MARK: - Function
     @objc private func backaction () {
-            // 設定動作
-        delegate?.didSelectDays(checktimes: checktime)
+        // 設定動作
         navigationController?.popViewController(animated: true)
     }
     func reptableSet (){tbvrepsee.register(UINib(nibName: "repTableViewCell", bundle: nil),forCellReuseIdentifier: repTableViewCell.identifier)
@@ -48,7 +46,7 @@ class repViewController: UIViewController {
         tbvrepsee.dataSource = self
         
     }
-
+    
 }
 // MARK: - Extensions
 //tableview設定
@@ -69,7 +67,7 @@ extension repViewController: UITableViewDelegate, UITableViewDataSource  {
             cell.accessoryType = .checkmark
         }
         return cell
-        }
+    }
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         var check = 1
         if let cell = tbvrepsee.cellForRow(at: indexPath) {
@@ -86,9 +84,7 @@ extension repViewController: UITableViewDelegate, UITableViewDataSource  {
             tableView.deselectRow(at: indexPath, animated: true)
         }
     }
-    }
+}
 
 //定義傳值
-protocol RepViewControllerDelegate: AnyObject {
-    func didSelectDays(checktimes: [Int])
-}
+

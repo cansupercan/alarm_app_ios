@@ -18,14 +18,14 @@ class addViewController: UIViewController {
     weak var delegate: addViewControllerDelegate?
     var isedit = false
     var rows = 0
-    var dayselect = [0,0,0,0,0,0,0]
-    var daysee="永不"
+    var selectedDay = [Int]()
     // MARK: - LifeCycle
     override func viewDidLoad() {
         super.viewDidLoad()
         addtableSet()
         addsetUI()
         setupNavigationBarButton()
+        addsetrep()
     }
     // MARK: - UI Settings
     
@@ -45,6 +45,13 @@ class addViewController: UIViewController {
         navigationItem.leftBarButtonItem = cancelButton
         navigationItem.rightBarButtonItem = saveButton
         navigationItem.title = "新增鬧鐘"
+    }
+    func addsetrep(){
+        if isedit{
+            day_value.shared.select = [Int]()
+        }else{
+            day_value.shared.select = [Int]()
+        }
     }
     // MARK: - IBAction
     
@@ -111,18 +118,23 @@ class addViewController: UIViewController {
     }
     func setloopcell()  {
         var repeatDay: String
-        if selectedDayIndices == [1, 2, 3, 4, 5] { // 星期一到五
+        if selectedDay == [0,1, 2, 3, 4] { // 星期一到五
             repeatDay = "平日"
-        } else if selectedDayIndices == [0, 6] { // 星期六和日
+        } else if selectedDay == [6,5] { // 星期六和日
             repeatDay = "週末"
-        } else if selectedDayIndices == [0, 1, 2, 3, 4, 5, 6] { // 每天
+        } else if selectedDay == [0, 1, 2, 3, 4, 5, 6] { // 每天
             repeatDay = "每天"
-        } else if selectedDayIndices == [] { // 每天
+        } else if selectedDay.isEmpty { // 沒有選擇任何天
             repeatDay = "永不"
         } else {
+            // 將選擇的天數名稱連接成一個字串
+            let dayNames = ["星期一", "星期二", "星期三", "星期四", "星期五", "星期六","星期天"]
+            let selectedDayNames = selectedDay.map { dayNames[$0] }
             repeatDay = selectedDayNames.joined(separator: ", ")
         }
+        day_value.shared.daysee = repeatDay
     }
+
     
 }
 // MARK: - Extensions
@@ -136,7 +148,8 @@ extension addViewController: UITableViewDelegate, UITableViewDataSource  {
         case 0:
             let cell = tableView.dequeueReusableCell(withIdentifier: "addloopTableViewCell", for: indexPath) as! addloopTableViewCell
             setloopcell()
-            cell.laloopsee.text = day_value.shared.daysee
+            let selectedDayNames = day_value.shared.daysee
+            cell.laloopsee.text = selectedDayNames
             cell.accessoryType = .disclosureIndicator
             return cell
         case 1:
@@ -150,7 +163,7 @@ extension addViewController: UITableViewDelegate, UITableViewDataSource  {
             let cell = tableView.dequeueReusableCell(withIdentifier: "addreTableViewCell", for: indexPath) as! addreTableViewCell
             return cell
         default:
-            fatalError("Unexpected index path")
+            break
         }
     }
     //設定點擊事件
@@ -181,12 +194,6 @@ extension addViewController: MainViewControllerDelegate {
     }
 }
 
-extension addViewController: RepViewControllerDelegate {
-    func didSelectDays(checktimes: [Int]){
-        self.dayselect = checktimes
-        print(checktimes)
-        tbvaddsee.reloadData()
-    }
-}
+
 
 
