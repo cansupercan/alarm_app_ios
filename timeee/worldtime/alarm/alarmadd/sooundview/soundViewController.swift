@@ -18,7 +18,9 @@ class soundViewController: UIViewController {
     // MARK: - LifeCycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        let indexPathrow = IndexPath(row: 0, section: 0)
+        let cellt = tbvsousee.cellForRow(at: indexPathrow)
+        cellt?.accessoryType = .checkmark
     }
     // MARK: - UI Settings
     
@@ -42,23 +44,20 @@ extension soundViewController: UITableViewDelegate, UITableViewDataSource  {
     //點擊事件
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let beforesoun = sound_value.shared.whosoun
-        let cell1 = tbvsousee.cellForRow(at: beforesoun)
-        if let cell = tbvsousee.cellForRow(at: indexPath) {
-            // 切換勾選狀態
-            if cell.accessoryType == .checkmark {
-               
-                cell.accessoryType = .none
-            } else {
-                
-                cell.accessoryType = .checkmark
-                
-            }
-            
-            // 可選：點擊後取消選中狀態
-            tableView.deselectRow(at: indexPath, animated: true)
-           // print(day_value.shared.select)
-        }
-    }
+        let indexPatht = IndexPath(row: beforesoun, section: 0)
+        let cell1 = tbvsousee.cellForRow(at: indexPatht)
+        let cell2 = tbvsousee.cellForRow(at: indexPath)
         
+        
+        
+        cell1?.accessoryType = .none
+        
+        cell2?.accessoryType = .checkmark
+        
+        
+        // 可選：點擊後取消選中狀態
+        tableView.deselectRow(at: indexPatht, animated: true)
+        tableView.deselectRow(at: indexPath, animated: true)
+        // print(day_value.shared.select)
     }
-
+}
