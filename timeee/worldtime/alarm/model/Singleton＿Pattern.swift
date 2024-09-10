@@ -18,5 +18,16 @@ class day_value {
     var select = [Int]()
     var daysee:String="永不"
     static let shared = day_value()
+    func sortSelect() {
+            // 對 select 陣列進行升序排序
+            select.sort()
+        }
+    func removeitem(value: Int) {
+            if let index = select.firstIndex(of: value) {
+                select.remove(at: index)
+            } else {
+                print("Value not found in the array")
+            }
+        }
     private init() {}
 }

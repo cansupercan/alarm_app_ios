@@ -27,6 +27,10 @@ class addViewController: UIViewController {
         setupNavigationBarButton()
         addsetrep()
     }
+    override func viewWillAppear(_ animated: Bool) {
+        //print(day_value.shared.select)
+        tbvaddsee.reloadData()
+    }
     // MARK: - UI Settings
     
     func addsetUI() {
@@ -118,9 +122,10 @@ class addViewController: UIViewController {
     }
     func setloopcell()  {
         var repeatDay: String
+        selectedDay = day_value.shared.select
         if selectedDay == [0,1, 2, 3, 4] { // 星期一到五
             repeatDay = "平日"
-        } else if selectedDay == [6,5] { // 星期六和日
+        } else if selectedDay == [5,6] { // 星期六和日
             repeatDay = "週末"
         } else if selectedDay == [0, 1, 2, 3, 4, 5, 6] { // 每天
             repeatDay = "每天"
@@ -133,6 +138,7 @@ class addViewController: UIViewController {
             repeatDay = selectedDayNames.joined(separator: ", ")
         }
         day_value.shared.daysee = repeatDay
+      //  print(day_value.shared.daysee)
     }
 
     
@@ -163,7 +169,8 @@ extension addViewController: UITableViewDelegate, UITableViewDataSource  {
             let cell = tableView.dequeueReusableCell(withIdentifier: "addreTableViewCell", for: indexPath) as! addreTableViewCell
             return cell
         default:
-            break
+            return UITableViewCell()
+            
         }
     }
     //設定點擊事件

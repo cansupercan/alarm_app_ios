@@ -61,8 +61,13 @@ extension repViewController: UITableViewDelegate, UITableViewDataSource  {
         }
         // 設定文本
         cell.lareptbvlab.text = day[indexPath.row]
-        if checktime[indexPath.row] == 0 {
+        var checktimes=[0,0,0,0,0,0,0]
+        for i in 0..<checktime.count{
+            checktimes[checktime[i]] = 1
+        }
+        if checktimes[indexPath.row] == 0 {
             cell.accessoryType = .none
+            
         }else{
             cell.accessoryType = .checkmark
         }
@@ -73,15 +78,26 @@ extension repViewController: UITableViewDelegate, UITableViewDataSource  {
         if let cell = tbvrepsee.cellForRow(at: indexPath) {
             // 切換勾選狀態
             if cell.accessoryType == .checkmark {
+                let datev=day_value.shared
+                datev.removeitem(value:indexPath.row)
+                datev.sortSelect()
                 cell.accessoryType = .none
                 check = 0
             } else {
+                day_value.shared.select.append(indexPath.row)
+                let datev=day_value.shared
+                datev.sortSelect()
                 cell.accessoryType = .checkmark
                 
             }
-            checktime[indexPath.row] = check
+            var checktimes=[0,0,0,0,0,0,0]
+            for i in 0..<checktime.count{
+                checktimes[checktime[i]] = 1
+            }
+            checktimes[indexPath.row] = check
             // 可選：點擊後取消選中狀態
             tableView.deselectRow(at: indexPath, animated: true)
+           // print(day_value.shared.select)
         }
     }
 }
