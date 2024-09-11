@@ -13,16 +13,16 @@ class soundViewController: UIViewController {
     // MARK: - IBOutlet
     @IBOutlet weak var tbvsousee: UITableView!
     // MARK: - Property
-    let sounmap = ["(長)戰意","戰意音樂完整版","出發","浩氣"]
+    let sounmap = ["震動","(長)戰意","戰意音樂完整版","出發","浩氣"]
     var seceltsoun = sound_value.shared.whosoun
+    var first = false
     // MARK: - LifeCycle
     override func viewDidLoad() {
         super.viewDidLoad()
         setupBarButton()
         soutableSet ()
-//        let indexPathrow = IndexPath(row: 0, section: 0)
-//        let cellt = tbvsousee.cellForRow(at: indexPathrow)
-//        cellt?.accessoryType = .checkmark
+        first = true
+        tbvsousee.reloadData()
     }
     // MARK: - UI Settings
     private func setupBarButton() {
@@ -60,6 +60,10 @@ extension soundViewController: UITableViewDelegate, UITableViewDataSource  {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "sounTableViewCell", for: indexPath) as! sounTableViewCell
         cell.lbsoundsee.text = sounmap[indexPath.row]
+        if self.first {
+            cell.accessoryType = .checkmark
+            self.first = false
+        }
         return cell
     }
     //點擊事件
@@ -68,7 +72,7 @@ extension soundViewController: UITableViewDelegate, UITableViewDataSource  {
         let indexPatht = IndexPath(row: beforesoun, section: 0)
         let cell1 = tbvsousee.cellForRow(at: indexPatht)
         let cell2 = tbvsousee.cellForRow(at: indexPath)
-        
+        sound_value.shared.whosoun = indexPath.row
         
         
         cell1?.accessoryType = .none
