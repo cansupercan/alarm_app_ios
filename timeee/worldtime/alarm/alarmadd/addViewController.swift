@@ -188,6 +188,8 @@ extension addViewController: UITableViewDelegate, UITableViewDataSource  {
             navigationController?.pushViewController(addVC, animated: true)
             break
         case 2:
+            let addVC = soundViewController()
+            navigationController?.pushViewController(addVC, animated: true)
             break
         default:
             print("dd")

@@ -18,18 +18,39 @@ class soundViewController: UIViewController {
     // MARK: - LifeCycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        let indexPathrow = IndexPath(row: 0, section: 0)
-        let cellt = tbvsousee.cellForRow(at: indexPathrow)
-        cellt?.accessoryType = .checkmark
+        setupBarButton()
+        soutableSet ()
+//        let indexPathrow = IndexPath(row: 0, section: 0)
+//        let cellt = tbvsousee.cellForRow(at: indexPathrow)
+//        cellt?.accessoryType = .checkmark
     }
     // MARK: - UI Settings
-    
+    private func setupBarButton() {
+        // 宣告按鈕
+        
+        let backButton = UIBarButtonItem(image: UIImage(systemName: "chevron.left"),
+                                         style: .plain,
+                                         target: self,
+                                         action: #selector(backaction))
+        backButton.title = "返回"
+        navigationItem.leftBarButtonItem = backButton
+        
+        // 增加按鈕
+        navigationItem.title = "重複"
+    }
+    func soutableSet (){tbvsousee.register(UINib(nibName: "sounTableViewCell", bundle: nil),forCellReuseIdentifier: sounTableViewCell.identifier)
+        tbvsousee.delegate = self
+        tbvsousee.dataSource = self
+        
+    }
     // MARK: - IBAction
     
-    
+    // MARK: - Function
+    @objc private func backaction () {
+        // 設定動作
+        navigationController?.popViewController(animated: true)
+    }
 }
-// MARK: - Function
-
 // MARK: - Extensions
 extension soundViewController: UITableViewDelegate, UITableViewDataSource  {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {

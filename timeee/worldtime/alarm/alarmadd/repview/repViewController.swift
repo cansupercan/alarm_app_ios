@@ -32,7 +32,7 @@ class repViewController: UIViewController {
         navigationItem.leftBarButtonItem = backButton
         
         // 增加按鈕
-        navigationItem.title = "新增鬧鐘"
+        navigationItem.title = "重複"
     }
     // MARK: - IBAction
     

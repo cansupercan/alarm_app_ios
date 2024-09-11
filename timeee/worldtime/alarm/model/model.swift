@@ -16,6 +16,7 @@ class clockdata: Object {
     @objc dynamic var timemin:Int = 1
     @objc dynamic var repeadate:String = ""
     @objc dynamic var message: String = ""
+    @objc dynamic var waitsw: Bool = true
     @objc dynamic var turnsw: Bool = false
     
     //設定索引主題
@@ -29,7 +30,8 @@ class clockdata: Object {
                      repeadate: String,
                      message: String,
                      uptime: Bool,
-                     turnsw: Bool ) {
+                     turnsw: Bool,
+                     waitsw: Bool) {
         self.init()
         self.tid = tid
         self.timehor = timehor
@@ -38,6 +40,6 @@ class clockdata: Object {
         self.repeadate = repeadate
         self.message = message
         self.turnsw = turnsw
-        
+        self.waitsw = waitsw
     }
 }
