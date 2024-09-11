@@ -34,6 +34,7 @@ class day_value {
 
 class sound_value{
     var whosoun = 0
+    let mapsoun = ["震動","(長)戰意","戰意音樂完整版","出發","浩氣"]
     static let shared = sound_value()
     private init() {}
 }

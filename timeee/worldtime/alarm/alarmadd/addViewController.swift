@@ -26,9 +26,9 @@ class addViewController: UIViewController {
         addsetUI()
         setupNavigationBarButton()
         addsetrep()
+        sound_value.shared.whosoun = 0
     }
     override func viewWillAppear(_ animated: Bool) {
-        //print(day_value.shared.select)
         tbvaddsee.reloadData()
     }
     // MARK: - UI Settings
@@ -170,6 +170,8 @@ extension addViewController: UITableViewDelegate, UITableViewDataSource  {
         case 2:
             let cell = tableView.dequeueReusableCell(withIdentifier: "soundTableViewCell", for: indexPath) as! soundTableViewCell
             cell.accessoryType = .disclosureIndicator
+            let rowsou = sound_value.shared.whosoun
+            cell.lasounsee.text = sound_value.shared.mapsoun[rowsou]
             return cell
         case 3:
             let cell = tableView.dequeueReusableCell(withIdentifier: "addreTableViewCell", for: indexPath) as! addreTableViewCell

@@ -22,8 +22,8 @@
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="震動" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2GW-UX-LfR">
-                        <rect key="frame" x="275" y="8.5" width="58" height="27"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="震動" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2GW-UX-LfR">
+                        <rect key="frame" x="118" y="8.5" width="202" height="27"/>
                         <fontDescription key="fontDescription" type="system" pointSize="22"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
@@ -33,15 +33,18 @@
                     <constraint firstItem="joW-D0-HPn" firstAttribute="width" secondItem="H2p-sc-9uM" secondAttribute="width" multiplier="0.223438" id="50b-zv-dpy"/>
                     <constraint firstItem="joW-D0-HPn" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="5DP-Ix-34j"/>
                     <constraint firstItem="joW-D0-HPn" firstAttribute="height" secondItem="H2p-sc-9uM" secondAttribute="height" multiplier="0.613636" id="7Pk-dd-VTK"/>
-                    <constraint firstItem="2GW-UX-LfR" firstAttribute="width" secondItem="H2p-sc-9uM" secondAttribute="width" multiplier="0.18125" id="Ik5-xZ-KIT"/>
-                    <constraint firstItem="2GW-UX-LfR" firstAttribute="height" secondItem="H2p-sc-9uM" secondAttribute="height" multiplier="0.613636" id="KI1-jd-Hpt"/>
-                    <constraint firstItem="2GW-UX-LfR" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="TQB-vB-opi"/>
+                    <constraint firstItem="2GW-UX-LfR" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="JCY-y5-gHf"/>
+                    <constraint firstItem="2GW-UX-LfR" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="118" id="K5R-P0-ddz"/>
                     <constraint firstAttribute="trailing" secondItem="joW-D0-HPn" secondAttribute="trailing" constant="210" id="Uok-Ao-sT6"/>
-                    <constraint firstItem="2GW-UX-LfR" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="275" id="uK6-US-bOb"/>
+                    <constraint firstItem="2GW-UX-LfR" firstAttribute="width" secondItem="H2p-sc-9uM" secondAttribute="width" multiplier="0.63125" id="laN-Ha-MaO"/>
+                    <constraint firstItem="2GW-UX-LfR" firstAttribute="height" secondItem="H2p-sc-9uM" secondAttribute="height" multiplier="0.613636" id="oKi-Yo-IRC"/>
                 </constraints>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
-            <point key="canvasLocation" x="132" y="79"/>
+            <connections>
+                <outlet property="lasounsee" destination="2GW-UX-LfR" id="ok1-Eu-bSj"/>
+            </connections>
+            <point key="canvasLocation" x="131.8840579710145" y="78.348214285714278"/>
         </tableViewCell>
     </objects>
 </document>

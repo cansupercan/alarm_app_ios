@@ -15,13 +15,11 @@ class soundViewController: UIViewController {
     // MARK: - Property
     let sounmap = ["震動","(長)戰意","戰意音樂完整版","出發","浩氣"]
     var seceltsoun = sound_value.shared.whosoun
-    var first = false
     // MARK: - LifeCycle
     override func viewDidLoad() {
         super.viewDidLoad()
         setupBarButton()
         soutableSet ()
-        first = true
         tbvsousee.reloadData()
     }
     // MARK: - UI Settings
@@ -60,9 +58,8 @@ extension soundViewController: UITableViewDelegate, UITableViewDataSource  {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "sounTableViewCell", for: indexPath) as! sounTableViewCell
         cell.lbsoundsee.text = sounmap[indexPath.row]
-        if self.first {
+        if indexPath.row == sound_value.shared.whosoun{
             cell.accessoryType = .checkmark
-            self.first = false
         }
         return cell
     }
