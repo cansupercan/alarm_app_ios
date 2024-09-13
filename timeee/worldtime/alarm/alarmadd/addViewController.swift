@@ -152,6 +152,14 @@ class addViewController: UIViewController {
         day_value.shared.daysee = repeatDay
       //  print(day_value.shared.daysee)
     }
+    //處理稍後提醒的ＳＷ
+    @objc func switchToggled(_ sender: UISwitch) {
+        if sender.isOn {
+            print("Switch is ON")
+        } else {
+            print("Switch is OFF")
+        }
+    }
 
     
 }
@@ -181,7 +189,7 @@ extension addViewController: UITableViewDelegate, UITableViewDataSource  {
             return cell
         case 3:
             let cell = tableView.dequeueReusableCell(withIdentifier: "addreTableViewCell", for: indexPath) as! addreTableViewCell
-            cell.swwaitIB.addTarget(<#T##target: Any?##Any?#>, action: <#T##Selector#>, for: <#T##UIControl.Event#>)
+            cell.swwaitIB.addTarget(self, action: #selector(switchToggled(_:)), for: .valueChanged)
             return cell
         default:
             return UITableViewCell()
