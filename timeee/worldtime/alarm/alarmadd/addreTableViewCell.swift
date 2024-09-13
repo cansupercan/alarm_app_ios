@@ -8,6 +8,7 @@
 import UIKit
 
 class addreTableViewCell: UITableViewCell {
+    @IBOutlet weak var swwaitIB: UISwitch!
     static let identifier = "addreTableViewCell"
     override func awakeFromNib() {
         super.awakeFromNib()

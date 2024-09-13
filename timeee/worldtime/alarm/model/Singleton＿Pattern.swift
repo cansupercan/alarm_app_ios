@@ -38,3 +38,8 @@ class sound_value{
     static let shared = sound_value()
     private init() {}
 }
+class swwait_value{
+    var swwait = true
+    static let shared = swwait_value()
+    private init() {}
+}

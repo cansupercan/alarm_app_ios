@@ -19,9 +19,11 @@ class addViewController: UIViewController {
     var isedit = false
     var rows = 0
     var selectedDay = [Int]()
+    var swwaitnow = true
     // MARK: - LifeCycle
     override func viewDidLoad() {
         super.viewDidLoad()
+        swwait_value.shared.swwait = swwaitnow
         addtableSet()
         addsetUI()
         setupNavigationBarButton()
@@ -112,10 +114,14 @@ class addViewController: UIViewController {
             dayst = dayst+"\(day_value.shared.select[i]),"
         }
         onedata.repeadate = dayst
-        //onedata.repeaT=尚未實作的功能
+        //音樂
+        onedata.sound = sound_value.shared.whosoun
+        //稍後提醒
+        onedata.waitsw = swwait_value.shared.swwait
         try! realm.write {
             realm.add(onedata)
         }
+        
         //回傳並關閉畫面
         delegate?.passData(data1)
         dismiss(animated: true, completion: nil)
@@ -175,6 +181,7 @@ extension addViewController: UITableViewDelegate, UITableViewDataSource  {
             return cell
         case 3:
             let cell = tableView.dequeueReusableCell(withIdentifier: "addreTableViewCell", for: indexPath) as! addreTableViewCell
+            cell.swwaitIB.addTarget(<#T##target: Any?##Any?#>, action: <#T##Selector#>, for: <#T##UIControl.Event#>)
             return cell
         default:
             return UITableViewCell()

@@ -18,6 +18,7 @@ class clockdata: Object {
     @objc dynamic var message: String = ""
     @objc dynamic var waitsw: Bool = true
     @objc dynamic var turnsw: Bool = false
+    @objc dynamic var sound: Int = 0
     
     //設定索引主題
     /*  override static func primaryKey() -> String? {
@@ -31,7 +32,8 @@ class clockdata: Object {
                      message: String,
                      uptime: Bool,
                      turnsw: Bool,
-                     waitsw: Bool) {
+                     waitsw: Bool,
+                     sound:Int) {
         self.init()
         self.tid = tid
         self.timehor = timehor
@@ -41,5 +43,6 @@ class clockdata: Object {
         self.message = message
         self.turnsw = turnsw
         self.waitsw = waitsw
+        self.sound = sound
     }
 }
