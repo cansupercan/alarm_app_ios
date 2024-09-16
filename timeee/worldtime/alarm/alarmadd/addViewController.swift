@@ -20,15 +20,47 @@ class addViewController: UIViewController {
     var rows = 0
     var selectedDay = [Int]()
     var swwaitnow = true
+    var messagese = ""
+    var min = 0,hor = 0,uptime = true
     // MARK: - LifeCycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        swwait_value.shared.swwait = swwaitnow
+        let x = edit_value.shared.isediting
+        let y = edit_value.shared.row
+        rows = y
+        if x {
+            navigationItem.title = "編輯鬧鐘"
+            let realm = try! Realm()
+            let mydata=realm.objects(clockdata.self)
+            let editdata = mydata[y]
+            swwait_value.shared.swwait = editdata.waitsw
+            swwaitnow = editdata.waitsw
+            //print(editdata.waitsw)
+            sound_value.shared.whosoun = editdata.sound
+            isedit = true
+            edit_value.shared.isediting = false
+            //設定標籤
+            messagese = editdata.message
+            //讀取時間
+            min = editdata.timemin
+            hor = editdata.timehor
+            uptime = editdata.uptime
+            print(min)
+            print(hor)
+            print(uptime)
+            setpkvfu()
+        }
+        else{
+            isedit = false
+            swwaitnow = true
+            swwait_value.shared.swwait = true
+            sound_value.shared.whosoun = 0}
         addtableSet()
         addsetUI()
         setupNavigationBarButton()
         addsetrep()
-        sound_value.shared.whosoun = 0
+        
+        
     }
     override func viewWillAppear(_ animated: Bool) {
         tbvaddsee.reloadData()
@@ -50,11 +82,38 @@ class addViewController: UIViewController {
         // 增加按鈕
         navigationItem.leftBarButtonItem = cancelButton
         navigationItem.rightBarButtonItem = saveButton
-        navigationItem.title = "新增鬧鐘"
+        if isedit {
+            navigationItem.title = "編輯鬧鐘"}
+        else{
+            navigationItem.title = "新增鬧鐘"
+        }
     }
     func addsetrep(){
         if isedit{
-            day_value.shared.select = [Int]()
+            let realm = try! Realm()
+            let mydata=realm.objects(clockdata.self)
+            let editdata = mydata[rows]
+            // 假設 dayst 是從 clockdata 類別中取得的
+            var dayst = editdata.repeadate
+            //print(dayst)
+            // 移除尾隨的逗號
+            if dayst.hasSuffix(",") {
+                dayst.removeLast()
+            }
+            // print(dayst)
+            // 拆分字串並轉換為整數陣列
+            let daystArray = dayst.components(separatedBy: ",")
+            // print(daystArray)
+            var days = [Int]()
+            for day in daystArray {
+                if let dayInt = Int(day) {
+                    days.append(dayInt)
+                }
+            }
+            // 將 days 陣列賦值給 day_value.shared.select
+            day_value.shared.select = days
+            // print(days)
+            
         }else{
             day_value.shared.select = [Int]()
         }
@@ -69,6 +128,7 @@ class addViewController: UIViewController {
     
     @objc private func saveButtonTapped() {
         //對date picker 取值
+        
         let ktime = dpktime.date
         let dateFormatter = DateFormatter()
         
@@ -118,8 +178,25 @@ class addViewController: UIViewController {
         onedata.sound = sound_value.shared.whosoun
         //稍後提醒
         onedata.waitsw = swwait_value.shared.swwait
-        try! realm.write {
-            realm.add(onedata)
+        if isedit{
+            let allObjects = realm.objects(clockdata.self)
+            let editrowdata = allObjects[rows]
+            try! realm.write {
+                // 修改您找到的對象
+                editrowdata.uptime = onedata.uptime
+                editrowdata.waitsw = onedata.waitsw
+                editrowdata.message = onedata.message
+                editrowdata.timehor = onedata.timehor
+                editrowdata.timemin = onedata.timemin
+                editrowdata.repeadate  = onedata.repeadate
+                editrowdata.sound = onedata.sound
+                // 其他您需要修改的屬性
+            }
+        }
+        else{
+            try! realm.write {
+                realm.add(onedata)
+            }
         }
         
         //回傳並關閉畫面
@@ -150,7 +227,7 @@ class addViewController: UIViewController {
             repeatDay = selectedDayNames.joined(separator: ", ")
         }
         day_value.shared.daysee = repeatDay
-      //  print(day_value.shared.daysee)
+        //  print(day_value.shared.daysee)
     }
     //處理稍後提醒的ＳＷ
     @objc func switchToggled(_ sender: UISwitch) {
@@ -160,7 +237,33 @@ class addViewController: UIViewController {
             swwait_value.shared.swwait = false
         }
     }
-
+    func setpkvfu(){
+        // 使用 Calendar 和 DateComponents 來創建 Date 物件
+        var components = DateComponents()
+        components.minute = min
+        components.timeZone = TimeZone.current
+        
+        // 處理小時數
+        if uptime { // AM
+            if hor == 12 { // AM 的 12 點應該設置為 0 點
+                components.hour = 0
+            } else {
+                components.hour = hor
+            }
+        } else { // PM
+            if hor != 12 { // PM 的 12 點應該保持為 12 點
+                components.hour = hor + 12
+            } else {
+                components.hour = hor
+            }
+        }
+        
+        // 創建 Date 物件
+        let calendar = Calendar.current
+        if let date = calendar.date(from: components) {
+            dpktime.setDate(date, animated: false)
+        }
+    }
     
 }
 // MARK: - Extensions
@@ -180,6 +283,8 @@ extension addViewController: UITableViewDelegate, UITableViewDataSource  {
             return cell
         case 1:
             let cell = tableView.dequeueReusableCell(withIdentifier: "addmesTableViewCell", for: indexPath) as! addmesTableViewCell
+            cell.txfmes.text = messagese
+            print(messagese)
             return cell
         case 2:
             let cell = tableView.dequeueReusableCell(withIdentifier: "soundTableViewCell", for: indexPath) as! soundTableViewCell
@@ -190,6 +295,7 @@ extension addViewController: UITableViewDelegate, UITableViewDataSource  {
         case 3:
             let cell = tableView.dequeueReusableCell(withIdentifier: "addreTableViewCell", for: indexPath) as! addreTableViewCell
             cell.swwaitIB.addTarget(self, action: #selector(switchToggled(_:)), for: .valueChanged)
+            cell.swwaitIB.isOn = swwaitnow
             return cell
         default:
             return UITableViewCell()

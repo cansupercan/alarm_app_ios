@@ -26,7 +26,7 @@ class MainViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setUI()
-        //print(Realm.Configuration.defaultConfiguration.fileURL!)
+        print(Realm.Configuration.defaultConfiguration.fileURL!)
     }
     
     func setUI(){
@@ -139,6 +139,8 @@ extension MainViewController: UITableViewDelegate, UITableViewDataSource  {
         let addVC = addViewController()
         addVC.delegate = self
         let navigationController = UINavigationController(rootViewController: addVC)
+        edit_value.shared.row = indexPath.row
+        edit_value.shared.isediting = true
         self.present(navigationController, animated: true)
     }
 }
