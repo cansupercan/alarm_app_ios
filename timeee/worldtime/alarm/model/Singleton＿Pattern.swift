@@ -43,3 +43,8 @@ class swwait_value{
     static let shared = swwait_value()
     private init() {}
 }
+class etid_value{
+    var isediting = false
+    static let shared = etid_value()
+    private init() {}
+}
