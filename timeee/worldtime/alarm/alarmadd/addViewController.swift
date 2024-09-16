@@ -16,6 +16,7 @@ class addViewController: UIViewController {
     @IBOutlet weak var dpktime: UIDatePicker!
     // MARK: - Property
     weak var delegate: addViewControllerDelegate?
+    var isedit = false
     var rows = 0
     var selectedDay = [Int]()
     var swwaitnow = true

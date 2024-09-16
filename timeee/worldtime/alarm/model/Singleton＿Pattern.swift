@@ -43,8 +43,9 @@ class swwait_value{
     static let shared = swwait_value()
     private init() {}
 }
-class etid_value{
+class edit_value{
     var isediting = false
-    static let shared = etid_value()
+    var row = 0
+    static let shared = edit_value()
     private init() {}
 }

@@ -43,9 +43,8 @@ class MainViewController: UIViewController {
         self.title = "鬧鐘"
         navigationController?.navigationBar.prefersLargeTitles = true
         let btnRight = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addalarm))
-        let btnlight = UIBarButtonItem(barButtonSystemItem: .edit, target: self, action: #selector(editfunc))
+        self.navigationItem.leftBarButtonItem = self.editButtonItem
         navigationItem.rightBarButtonItem = btnRight
-        navigationItem.leftBarButtonItem = btnlight
         
     }
     
@@ -60,9 +59,10 @@ class MainViewController: UIViewController {
         let navigationController = UINavigationController(rootViewController: addVC)
         self.present(navigationController, animated: true)
     }
-    @objc func editfunc() {
-        print("edit")
-    }
+    override func setEditing(_ editing: Bool, animated: Bool) {
+            super.setEditing(editing, animated: animated)
+            tbvsee.setEditing(editing, animated: animated)
+        }
     // MARK: - Function
     
     
