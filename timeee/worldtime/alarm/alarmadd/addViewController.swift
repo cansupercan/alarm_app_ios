@@ -45,9 +45,6 @@ class addViewController: UIViewController {
             min = editdata.timemin
             hor = editdata.timehor
             uptime = editdata.uptime
-            print(min)
-            print(hor)
-            print(uptime)
             setpkvfu()
         }
         else{

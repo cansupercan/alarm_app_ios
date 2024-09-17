@@ -8,6 +8,7 @@
 import UIKit
 import RealmSwift
 import SwiftUI
+import UserNotifications
 
 class MainViewController: UIViewController {
     // MARK: - IBOutlet
@@ -67,11 +68,76 @@ class MainViewController: UIViewController {
         tbvsee.setEditing(editing, animated: animated)
     }
     // MARK: - Function
+    @objc func witchToggled(_ sender: UISwitch) {
+        let row = sender.tag
+        let id = "\(row)"
+        let realm = try! Realm()
+        let allObjects = realm.objects(clockdata.self)
+        let data = allObjects[row]
+        let min = data.timemin
+        let hor = data.timehor
+        let uptime = data.uptime
+        let mes = data.message
+        
+        if sender.isOn {
+            // 設置鬧鐘時間
+            createNotification(hour: hor, minute: min, uptime: uptime, message: mes, id: id)
+        } else {
+            removeNotification(withId:id)
+        }
+        
+        try! realm.write {
+            data.turnsw = sender.isOn
+        }
+    }
+    //設定鬧鐘的func
+    func removeNotification(withId id: String) {
+        UNUserNotificationCenter.current().removePendingNotificationRequests(withIdentifiers: [id])
+    }
     
-    
-    
-    
-    
+    func createNotification(hour: Int, minute: Int, uptime: Bool, message: String, id: String) {
+        // 設定通知內容
+        let content = UNMutableNotificationContent()
+        content.title = "鬧鐘"
+        content.subtitle = "\(hour):\(minute)"
+        content.body = message
+        content.badge = 1
+        content.sound = UNNotificationSound.default
+        content.categoryIdentifier = "alarmMessage"
+
+        // 設定上下午
+        var hour24 = hour
+        
+        // 根據 uptime 設定 24 小時制的時間
+        if uptime == false { // PM 時間
+            if hour != 12 { // 如果小時不是 12，則需要加 12
+                hour24 += 12
+            }
+        } else { // AM 時間
+            if hour == 12 { // 如果小時是 12，則設為 0
+                hour24 = 0
+            }
+        }
+        
+        // 建立 DateComponents 以設定通知觸發時間
+        var dateComponents = DateComponents()
+        dateComponents.hour = hour24
+        dateComponents.minute = minute
+        
+        // 設定通知觸發器
+        let trigger = UNCalendarNotificationTrigger(dateMatching: dateComponents, repeats: false)
+        
+        // 設定通知請求
+        let request = UNNotificationRequest(identifier: id, content: content, trigger: trigger)
+        
+        // 添加通知請求
+        UNUserNotificationCenter.current().add(request) { error in
+            if let error = error {
+                print("通知添加錯誤: \(error.localizedDescription)")
+            }
+        }
+    }
+
 }
 
 // MARK: - Extensions
@@ -160,6 +226,8 @@ extension MainViewController: UITableViewDelegate, UITableViewDataSource  {
                     
                 }
             }
+            cell.swturn.tag = indexPath.row
+            cell.swturn.addTarget(self, action: #selector(witchToggled(_:)), for: .valueChanged)
             return cell
             
         }
@@ -173,36 +241,36 @@ extension MainViewController: UITableViewDelegate, UITableViewDataSource  {
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let headerView = UIView()
         headerView.backgroundColor = .systemBackground // 設定背景色
-
+        
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
-
+        
         if section == 0 {
             // 設定圖片附件
             let imageAttachment = NSTextAttachment()
             imageAttachment.image = UIImage(systemName: "bed.double.fill")?.withConfiguration(UIImage.SymbolConfiguration(pointSize: 16, weight: .regular))
-
+            
             let imageString = NSAttributedString(attachment: imageAttachment)
             let fullString = NSMutableAttributedString(string: "")
             fullString.append(imageString)
             fullString.append(NSAttributedString(string: " 睡眠｜起床鬧鐘"))
-
+            
             label.attributedText = fullString
         } else {
             label.text = "其他"
         }
-
+        
         headerView.addSubview(label)
-
+        
         // 設定 Label 的佈局
         NSLayoutConstraint.activate([
             label.leadingAnchor.constraint(equalTo: headerView.leadingAnchor, constant: 16),
             label.centerYAnchor.constraint(equalTo: headerView.centerYAnchor)
         ])
-
+        
         return headerView
     }
-
+    
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         return 40 // 設定標題的高度
     }

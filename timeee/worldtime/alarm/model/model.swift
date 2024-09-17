@@ -16,7 +16,7 @@ class clockdata: Object {
     @objc dynamic var timemin:Int = 1
     @objc dynamic var repeadate:String = ""
     @objc dynamic var message: String = ""
-    @objc dynamic var waitsw: Bool = true
+    @objc dynamic var waitsw: Bool = false
     @objc dynamic var turnsw: Bool = false
     @objc dynamic var sound: Int = 0
     
