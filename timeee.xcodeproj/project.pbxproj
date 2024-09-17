@@ -34,6 +34,8 @@
 		7D8FC7222C6F385800FED610 /* MainViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7D8FC7202C6F385800FED610 /* MainViewController.xib */; };
 		7D8FC7252C6F388E00FED610 /* TableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D8FC7232C6F388E00FED610 /* TableViewCell.swift */; };
 		7D8FC7262C6F388E00FED610 /* TableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7D8FC7242C6F388E00FED610 /* TableViewCell.xib */; };
+		7DC6FBD32C999B1B0043B9B2 /* sleepTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DC6FBD12C999B1B0043B9B2 /* sleepTableViewCell.swift */; };
+		7DC6FBD42C999B1B0043B9B2 /* sleepTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7DC6FBD22C999B1B0043B9B2 /* sleepTableViewCell.xib */; };
 		7DFE65FF2C803B5C00E6B612 /* Singleton＿Pattern.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DFE65FE2C803B5C00E6B612 /* Singleton＿Pattern.swift */; };
 		B171F73A4F7B02DFC8CF51E0 /* Pods_timeee.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 10FF1D82EF7F64BE35DD23DE /* Pods_timeee.framework */; };
 /* End PBXBuildFile section */
@@ -70,6 +72,8 @@
 		7D8FC7202C6F385800FED610 /* MainViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MainViewController.xib; sourceTree = "<group>"; };
 		7D8FC7232C6F388E00FED610 /* TableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewCell.swift; sourceTree = "<group>"; };
 		7D8FC7242C6F388E00FED610 /* TableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TableViewCell.xib; sourceTree = "<group>"; };
+		7DC6FBD12C999B1B0043B9B2 /* sleepTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = sleepTableViewCell.swift; sourceTree = "<group>"; };
+		7DC6FBD22C999B1B0043B9B2 /* sleepTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = sleepTableViewCell.xib; sourceTree = "<group>"; };
 		7DFE65FE2C803B5C00E6B612 /* Singleton＿Pattern.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Singleton＿Pattern.swift"; sourceTree = "<group>"; };
 		CEC63FC91A3BB9B84E9DC2D8 /* Pods-timeee.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-timeee.debug.xcconfig"; path = "Target Support Files/Pods-timeee/Pods-timeee.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -138,6 +142,8 @@
 				7D8FC7242C6F388E00FED610 /* TableViewCell.xib */,
 				7D8FC71F2C6F385800FED610 /* MainViewController.swift */,
 				7D8FC7202C6F385800FED610 /* MainViewController.xib */,
+				7DC6FBD12C999B1B0043B9B2 /* sleepTableViewCell.swift */,
+				7DC6FBD22C999B1B0043B9B2 /* sleepTableViewCell.xib */,
 			);
 			path = main;
 			sourceTree = "<group>";
@@ -278,6 +284,7 @@
 				7D8FC7262C6F388E00FED610 /* TableViewCell.xib in Resources */,
 				7D2AD1B92C7318FE00A02195 /* soundTableViewCell.xib in Resources */,
 				7D69B9A72C902C6E007C52BC /* soundViewController.xib in Resources */,
+				7DC6FBD42C999B1B0043B9B2 /* sleepTableViewCell.xib in Resources */,
 				7D69B9B12C903337007C52BC /* sounTableViewCell.xib in Resources */,
 				7D8FC7222C6F385800FED610 /* MainViewController.xib in Resources */,
 				7D8FC7152C6F31A800FED610 /* Assets.xcassets in Resources */,
@@ -353,6 +360,7 @@
 				7D2AD1B22C7317EE00A02195 /* addmesTableViewCell.swift in Sources */,
 				7D2AD19C2C72F85C00A02195 /* addViewController.swift in Sources */,
 				7D8FC70E2C6F31A500FED610 /* SceneDelegate.swift in Sources */,
+				7DC6FBD32C999B1B0043B9B2 /* sleepTableViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

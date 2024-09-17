@@ -32,8 +32,11 @@ class MainViewController: UIViewController {
     func setUI(){
         tableSet()
         setnev()
+        settavUI()
     }
-    
+    func settavUI(){
+        tbvsee.register(UINib(nibName: "sleepTableViewCell", bundle: nil), forCellReuseIdentifier: "sleepTableViewCell")
+    }
     func tableSet(){tbvsee.register(UINib(nibName: "TableViewCell", bundle: nil),forCellReuseIdentifier: TableViewCell.identifier)
         tbvsee.delegate = self
         tbvsee.dataSource = self
@@ -60,9 +63,9 @@ class MainViewController: UIViewController {
         self.present(navigationController, animated: true)
     }
     override func setEditing(_ editing: Bool, animated: Bool) {
-            super.setEditing(editing, animated: animated)
-            tbvsee.setEditing(editing, animated: animated)
-        }
+        super.setEditing(editing, animated: animated)
+        tbvsee.setEditing(editing, animated: animated)
+    }
     // MARK: - Function
     
     
@@ -74,50 +77,61 @@ class MainViewController: UIViewController {
 // MARK: - Extensions
 extension MainViewController: UITableViewDelegate, UITableViewDataSource  {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        let realm = try! Realm()
-        let datacount = realm.objects(clockdata.self).count
-        return datacount
+        if section == 0 {
+            return 1 // 設定第一個 section 的行數
+        } else {
+            let realm = try! Realm()
+            let datacount = realm.objects(clockdata.self).count
+            return datacount
+        }
     }
     //更新畫面
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tbvsee.dequeueReusableCell(withIdentifier: "TableViewCell",for: indexPath) as? TableViewCell else {
-            return UITableViewCell()
-        }
-        let currentDog = indexPath.row
-        let realm = try! Realm()
-        let mydata=realm.objects(clockdata.self)
-        let nowdata=mydata[currentDog]
-        var eetime=""
-        if(nowdata.uptime){
-            eetime="上午"
-        }else{
-            eetime="下午"
-        }
-        // 設定文本
-        var minzero = "\(nowdata.timemin)" //給個位數字補零
-        if( nowdata.timemin<10) {
-            minzero = "0\(nowdata.timemin)"
-        }
-        cell.lbnoon.text = eetime
-        cell.lbtime.text = "\(nowdata.timehor):\(minzero)"
-        cell.swturn.isOn = nowdata.turnsw
-        var repeatDay: String
-        var dayst = nowdata.repeadate
-        if dayst.hasSuffix(",") {
-            dayst.removeLast()
-        }
-        // print(dayst)
-        // 拆分字串並轉換為整數陣列
-        let daystArray = dayst.components(separatedBy: ",")
-        // print(daystArray)
-        var days = [Int]()
-        for day in daystArray {
-            if let dayInt = Int(day) {
-                days.append(dayInt)
+        switch (indexPath.section){
+        case 0:
+            guard let cell = tbvsee.dequeueReusableCell(withIdentifier: "sleepTableViewCell",for: indexPath) as? sleepTableViewCell else {
+                return UITableViewCell()
             }
-        }
-        // 將 days 陣列賦值給 day_value.shared.select
-        let selectedDay = days
+            return cell
+        default:
+            guard let cell = tbvsee.dequeueReusableCell(withIdentifier: "TableViewCell",for: indexPath) as? TableViewCell else {
+                return UITableViewCell()
+            }
+            let currentDog = indexPath.row
+            let realm = try! Realm()
+            let mydata=realm.objects(clockdata.self)
+            let nowdata=mydata[currentDog]
+            var eetime=""
+            if(nowdata.uptime){
+                eetime="上午"
+            }else{
+                eetime="下午"
+            }
+            // 設定文本
+            var minzero = "\(nowdata.timemin)" //給個位數字補零
+            if( nowdata.timemin<10) {
+                minzero = "0\(nowdata.timemin)"
+            }
+            cell.lbnoon.text = eetime
+            cell.lbtime.text = "\(nowdata.timehor):\(minzero)"
+            cell.swturn.isOn = nowdata.turnsw
+            var repeatDay: String
+            var dayst = nowdata.repeadate
+            if dayst.hasSuffix(",") {
+                dayst.removeLast()
+            }
+            // print(dayst)
+            // 拆分字串並轉換為整數陣列
+            let daystArray = dayst.components(separatedBy: ",")
+            // print(daystArray)
+            var days = [Int]()
+            for day in daystArray {
+                if let dayInt = Int(day) {
+                    days.append(dayInt)
+                }
+            }
+            // 將 days 陣列賦值給 day_value.shared.select
+            let selectedDay = days
             if selectedDay == [0,1, 2, 3, 4] { // 星期一到五
                 repeatDay = "平日"
             } else if selectedDay == [5,6] { // 星期六和日
@@ -132,21 +146,65 @@ extension MainViewController: UITableViewDelegate, UITableViewDataSource  {
                 let selectedDayNames = selectedDay.map { dayNames[$0] }
                 repeatDay = selectedDayNames.joined(separator: ", ")
             }
-        
-        if nowdata.message == ""{
-            if nowdata.repeadate.isEmpty {
-                
+            
+            if nowdata.message == ""{
+                if nowdata.repeadate.isEmpty {
+                    
+                }else{
+                    cell.lbunder.text = "鬧鐘．\(repeatDay)"}
             }else{
-                cell.lbunder.text = "鬧鐘．\(repeatDay)"}
-        }else{
-            if nowdata.repeadate.isEmpty {
-                cell.lbunder.text = "\(nowdata.message)"
-            }else{
-                cell.lbunder.text = "\(nowdata.message)．\(repeatDay)"
-                
+                if nowdata.repeadate.isEmpty {
+                    cell.lbunder.text = "\(nowdata.message)"
+                }else{
+                    cell.lbunder.text = "\(nowdata.message)．\(repeatDay)"
+                    
+                }
             }
+            return cell
+            
         }
-        return cell
+    }
+    //設定標題
+    //設定字數
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return 2 // 設置為 2，表示有兩個 section
+    }
+    //設定內容
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        let headerView = UIView()
+        headerView.backgroundColor = .systemBackground // 設定背景色
+
+        let label = UILabel()
+        label.translatesAutoresizingMaskIntoConstraints = false
+
+        if section == 0 {
+            // 設定圖片附件
+            let imageAttachment = NSTextAttachment()
+            imageAttachment.image = UIImage(systemName: "bed.double.fill")?.withConfiguration(UIImage.SymbolConfiguration(pointSize: 16, weight: .regular))
+
+            let imageString = NSAttributedString(attachment: imageAttachment)
+            let fullString = NSMutableAttributedString(string: "")
+            fullString.append(imageString)
+            fullString.append(NSAttributedString(string: " 睡眠｜起床鬧鐘"))
+
+            label.attributedText = fullString
+        } else {
+            label.text = "其他"
+        }
+
+        headerView.addSubview(label)
+
+        // 設定 Label 的佈局
+        NSLayoutConstraint.activate([
+            label.leadingAnchor.constraint(equalTo: headerView.leadingAnchor, constant: 16),
+            label.centerYAnchor.constraint(equalTo: headerView.centerYAnchor)
+        ])
+
+        return headerView
+    }
+
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return 40 // 設定標題的高度
     }
     //右滑功能
     // 配置 UISwipeActionsConfiguration
