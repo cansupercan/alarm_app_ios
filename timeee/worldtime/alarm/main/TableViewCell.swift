@@ -13,6 +13,7 @@ class TableViewCell: UITableViewCell {
     @IBOutlet weak var lbnoon: UILabel!
     
     @IBOutlet weak var swturn: UISwitch!
+    @IBOutlet weak var lbunder: UILabel!
     
     static let identifier = "TableViewCell"
     override func awakeFromNib() {

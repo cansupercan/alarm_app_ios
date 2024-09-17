@@ -190,6 +190,7 @@ class addViewController: UIViewController {
                 editrowdata.timemin = onedata.timemin
                 editrowdata.repeadate  = onedata.repeadate
                 editrowdata.sound = onedata.sound
+                
                 // 其他您需要修改的屬性
             }
         }
