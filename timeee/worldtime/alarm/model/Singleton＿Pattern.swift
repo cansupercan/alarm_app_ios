@@ -49,3 +49,8 @@ class edit_value{
     static let shared = edit_value()
     private init() {}
 }
+class id_value{
+    var sorted = [Int]()
+    static let shared = id_value()
+    private init() {}
+}

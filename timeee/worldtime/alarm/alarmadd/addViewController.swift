@@ -22,42 +22,79 @@ class addViewController: UIViewController {
     var swwaitnow = true
     var messagese = ""
     var min = 0,hor = 0,uptime = true
+    var sortdat:Results<clockdata>? = nil
     // MARK: - LifeCycle
     override func viewDidLoad() {
         super.viewDidLoad()
+        sortdata()
+        // 獲取是否正在編輯的狀態和選中的行數
         let x = edit_value.shared.isediting
         let y = edit_value.shared.row
-        rows = y
+        
+        // 判斷是否處於編輯模式
         if x {
             navigationItem.title = "編輯鬧鐘"
+            
+            // 開啟 Realm 資料庫
             let realm = try! Realm()
-            let mydata=realm.objects(clockdata.self)
-            let editdata = mydata[y]
-            swwait_value.shared.swwait = editdata.waitsw
-            swwaitnow = editdata.waitsw
-            //print(editdata.waitsw)
-            sound_value.shared.whosoun = editdata.sound
-            isedit = true
-            edit_value.shared.isediting = false
-            //設定標籤
-            messagese = editdata.message
-            //讀取時間
-            min = editdata.timemin
-            hor = editdata.timehor
-            uptime = editdata.uptime
-            setpkvfu()
-        }
-        else{
+            let mydata = realm.objects(clockdata.self)
+            
+            // 使用 rows 來獲取當前編輯的鬧鐘 ID
+            let nowid = y
+            
+            // 查找對應的資料
+            if let editdata = mydata.filter("tid == %@", nowid).first {
+                
+                // 將資料賦值給共享的變數或本地變數
+                swwait_value.shared.swwait = editdata.waitsw
+                swwaitnow = editdata.waitsw
+                sound_value.shared.whosoun = editdata.sound
+                isedit = true
+                edit_value.shared.isediting = false
+                
+                // 設定標籤和讀取時間
+                messagese = editdata.message
+                min = editdata.timemin
+                hor = editdata.timehor
+                uptime = editdata.uptime
+                
+                // 更新時間選擇器的狀態
+                setpkvfu()
+            }
+        } else {
+            // 如果不在編輯模式，則初始化默認值
             isedit = false
             swwaitnow = true
             swwait_value.shared.swwait = true
-            sound_value.shared.whosoun = 0}
+            sound_value.shared.whosoun = 0
+        }
+        
+        // 設置介面與其他相關設定
         addtableSet()
         addsetUI()
         setupNavigationBarButton()
         addsetrep()
+    }
+    func sortdata(){
+        let realm = try! Realm()
+        sortdat = realm.objects(clockdata.self)
         
+        // 使用 sorted 函式根據時間進行排序
+        let sortedClockData = sortdat?.sorted {
+            if $0.uptime == $1.uptime {
+                if $0.timehor == $1.timehor {
+                    return $0.timemin < $1.timemin
+                }
+                return $0.timehor < $1.timehor
+            }
+            return $0.uptime && !$1.uptime
+        }
         
+        // 將排序後的 tid 存入 sorted 陣列
+        id_value.shared.sorted = sortedClockData?.map { $0.tid } ?? []
+        
+        // Debug 印出排序結果
+        print(id_value.shared.sorted)
     }
     override func viewWillAppear(_ animated: Bool) {
         tbvaddsee.reloadData()
@@ -85,34 +122,46 @@ class addViewController: UIViewController {
             navigationItem.title = "新增鬧鐘"
         }
     }
-    func addsetrep(){
-        if isedit{
+    func addsetrep() {
+        if isedit {
             let realm = try! Realm()
-            let mydata=realm.objects(clockdata.self)
-            let editdata = mydata[rows]
-            // 假設 dayst 是從 clockdata 類別中取得的
-            var dayst = editdata.repeadate
-            //print(dayst)
-            // 移除尾隨的逗號
-            if dayst.hasSuffix(",") {
-                dayst.removeLast()
-            }
-            // print(dayst)
-            // 拆分字串並轉換為整數陣列
-            let daystArray = dayst.components(separatedBy: ",")
-            // print(daystArray)
-            var days = [Int]()
-            for day in daystArray {
-                if let dayInt = Int(day) {
-                    days.append(dayInt)
+            let mydata = realm.objects(clockdata.self)
+            let nowid = edit_value.shared.row // 確保 y 是正確的 tid 值
+            // 查找對應的資料
+            if let editdata = mydata.filter("tid == %@", nowid).first {
+                // 假設 dayst 是從 clockdata 類別中取得的
+                var dayst = editdata.repeadate
+                
+                // 移除尾隨的逗號（如果有）
+                if dayst.hasSuffix(",") {
+                    dayst.removeLast()
                 }
+                
+                // 拆分字串並轉換為整數陣列
+                let daystArray = dayst.components(separatedBy: ",")
+                var days = [Int]()
+                for day in daystArray {
+                    if let dayInt = Int(day) {
+                        days.append(dayInt)
+                    }
+                }
+                
+                // 將 days 陣列賦值給 day_value.shared.select
+                day_value.shared.select = days
+                
+                // 可選：打印調試信息
+                // print("Parsed days: \(days)")
+                
+            } else {
+                // 如果找不到對應的資料，重設 day_value.shared.select 為空陣列
+                day_value.shared.select = [Int]()
+                print(mydata)
+                print("a")
             }
-            // 將 days 陣列賦值給 day_value.shared.select
-            day_value.shared.select = days
-            // print(days)
-            
-        }else{
+        } else {
+            // 如果不在編輯模式，重設 day_value.shared.select 為空陣列
             day_value.shared.select = [Int]()
+            print("b")
         }
     }
     // MARK: - IBAction
@@ -175,20 +224,27 @@ class addViewController: UIViewController {
         onedata.sound = sound_value.shared.whosoun
         //稍後提醒
         onedata.waitsw = swwait_value.shared.swwait
-        if isedit{
+        if isedit {
+            let realm = try! Realm() // 確保 Realm 被正確初始化
             let allObjects = realm.objects(clockdata.self)
-            let editrowdata = allObjects[rows]
-            try! realm.write {
-                // 修改您找到的對象
-                editrowdata.uptime = onedata.uptime
-                editrowdata.waitsw = onedata.waitsw
-                editrowdata.message = onedata.message
-                editrowdata.timehor = onedata.timehor
-                editrowdata.timemin = onedata.timemin
-                editrowdata.repeadate  = onedata.repeadate
-                editrowdata.sound = onedata.sound
-                
-                // 其他您需要修改的屬性
+            // 確保 y 是正確的索引或 tid
+            let nowid = edit_value.shared.row // 使用正確的索引獲取 tid
+            // 查找對應的資料
+            if let editdata = allObjects.filter("tid == %@", nowid).first {
+                try! realm.write {
+                    // 更新找到的對象
+                    editdata.uptime = onedata.uptime
+                    editdata.waitsw = onedata.waitsw
+                    editdata.message = onedata.message
+                    editdata.timehor = onedata.timehor
+                    editdata.timemin = onedata.timemin
+                    editdata.repeadate = onedata.repeadate
+                    editdata.sound = onedata.sound
+                    
+                    // 其他您需要修改的屬性
+                }
+            } else {
+                print("找不到對應的資料")
             }
         }
         else{
