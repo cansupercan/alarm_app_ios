@@ -22,14 +22,38 @@ class MainViewController: UIViewController {
     // MARK: - Property
     var isedit:Bool = false
     var adddata: alarmDatatime?
+    var sorted = [Int]()
+    var sortdat:Results<clockdata>? = nil
     // MARK: - LifeCycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        //print(sortdat)
         setUI()
-        print(Realm.Configuration.defaultConfiguration.fileURL!)
+        //print(Realm.Configuration.defaultConfiguration.fileURL!)
+       // sortdata()
     }
-    
+   /* func sortdata(){
+        let realm = try! Realm()
+        sortdat = realm.objects(clockdata.self)
+        
+        // 使用 sorted 函式根據時間進行排序
+        let sortedClockData = sortdat?.sorted {
+            if $0.uptime == $1.uptime {
+                if $0.timehor == $1.timehor {
+                    return $0.timemin < $1.timemin
+                }
+                return $0.timehor < $1.timehor
+            }
+            return $0.uptime && !$1.uptime
+        }
+        
+        // 將排序後的 tid 存入 sorted 陣列
+        sorted = sortedClockData?.map { $0.tid } ?? []
+        
+        // Debug 印出排序結果
+        print(sorted)
+    }*/
     func setUI(){
         tableSet()
         setnev()
@@ -104,7 +128,7 @@ class MainViewController: UIViewController {
         content.badge = 1
         content.sound = UNNotificationSound.default
         content.categoryIdentifier = "alarmMessage"
-
+        
         // 設定上下午
         var hour24 = hour
         
@@ -137,7 +161,7 @@ class MainViewController: UIViewController {
             }
         }
     }
-
+    
 }
 
 // MARK: - Extensions
@@ -240,6 +264,8 @@ extension MainViewController: UITableViewDelegate, UITableViewDataSource  {
     //設定內容
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let headerView = UIView()
+        let realm = try! Realm()
+        sortdat = realm.objects(clockdata.self)
         headerView.backgroundColor = .systemBackground // 設定背景色
         
         let label = UILabel()

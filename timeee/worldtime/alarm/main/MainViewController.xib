@@ -15,7 +15,7 @@
                 <outlet property="bbcount" destination="9JX-zD-uWw" id="OYy-E6-ZZ9"/>
                 <outlet property="bbtimer" destination="Ljm-oF-mkB" id="5xX-2T-eus"/>
                 <outlet property="bbworldtime" destination="GNW-Et-5P6" id="sEd-4A-1Ks"/>
-                <outlet property="tbvsee" destination="pug-ka-biz" id="vRk-qI-lnS"/>
+                <outlet property="tbvsee" destination="BuY-at-A3Q" id="zMR-ed-rm4"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -24,13 +24,12 @@
             <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" id="pug-ka-biz">
-                    <rect key="frame" x="0.0" y="195" width="414" height="618"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="BuY-at-A3Q">
+                    <rect key="frame" x="0.0" y="50" width="414" height="806.5"/>
                     <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                 </tableView>
                 <tabBar contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="x6z-wN-pzO">
-                    <rect key="frame" x="0.0" y="813" width="414" height="49"/>
+                    <rect key="frame" x="0.0" y="851" width="414" height="49"/>
                     <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <items>
@@ -45,6 +44,12 @@
             </subviews>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+            <constraints>
+                <constraint firstItem="BuY-at-A3Q" firstAttribute="centerY" secondItem="fnl-2z-Ty3" secondAttribute="centerY" id="8bZ-cP-J7f"/>
+                <constraint firstItem="BuY-at-A3Q" firstAttribute="height" secondItem="fnl-2z-Ty3" secondAttribute="height" multiplier="0.985941" id="Ljx-ch-JmE"/>
+                <constraint firstItem="BuY-at-A3Q" firstAttribute="centerX" secondItem="fnl-2z-Ty3" secondAttribute="centerX" id="SgY-dz-TzP"/>
+                <constraint firstItem="BuY-at-A3Q" firstAttribute="width" secondItem="fnl-2z-Ty3" secondAttribute="width" id="uxH-J4-AMv"/>
+            </constraints>
             <point key="canvasLocation" x="131.8840579710145" y="78.348214285714278"/>
         </view>
     </objects>
