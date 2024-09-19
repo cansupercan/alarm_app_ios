@@ -251,6 +251,7 @@ class addViewController: UIViewController {
             try! realm.write {
                 realm.add(onedata)
             }
+            sortdata()
         }
         
         //回傳並關閉畫面

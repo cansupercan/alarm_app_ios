@@ -36,6 +36,7 @@ class MainViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         sortdata()
         tbvsee.reloadData()
+        print("22222")
     }
     func sortdata(){
         let realm = try! Realm()
@@ -98,24 +99,30 @@ class MainViewController: UIViewController {
     // MARK: - Function
     @objc func witchToggled(_ sender: UISwitch) {
         let row = sender.tag
-        let id = "\(row)"
+        let tid = id_value.shared.sorted[row]
         let realm = try! Realm()
         let allObjects = realm.objects(clockdata.self)
-        let data = allObjects[row]
-        let min = data.timemin
-        let hor = data.timehor
-        let uptime = data.uptime
-        let mes = data.message
+        let id = "\(row)"
         
-        if sender.isOn {
-            // 設置鬧鐘時間
-            createNotification(hour: hor, minute: min, uptime: uptime, message: mes, id: id)
+        // 查找對應的資料
+        if let data = allObjects.filter("tid == %@", tid).first {
+            let min = data.timemin
+            let hor = data.timehor
+            let uptime = data.uptime
+            let mes = data.message
+            
+            if sender.isOn {
+                // 設置鬧鐘時間
+                createNotification(hour: hor, minute: min, uptime: uptime, message: mes, id: id)
+            } else {
+                removeNotification(withId: id)
+            }
+            
+            try! realm.write {
+                data.turnsw = sender.isOn
+            }
         } else {
-            removeNotification(withId:id)
-        }
-        
-        try! realm.write {
-            data.turnsw = sender.isOn
+            print("找不到符合的資料")
         }
     }
     //設定鬧鐘的func
@@ -191,7 +198,7 @@ extension MainViewController: UITableViewDelegate, UITableViewDataSource  {
             guard let cell = tbvsee.dequeueReusableCell(withIdentifier: "TableViewCell", for: indexPath) as? TableViewCell else {
                 return UITableViewCell()
             }
-            
+            sortdata()
             let nowid = id_value.shared.sorted[indexPath.row]
             let realm = try! Realm()
             let mydata = realm.objects(clockdata.self)
